@@ -1,63 +1,101 @@
 ---
-title: "المخرجات"
-description: "أنواع الملفات والنتائج التي يمكنك إنشاؤها داخل مبيان"
+title: "Outputs"
+description: "The documents, decks, spreadsheets, pages, and websites you can create with Mibyan"
 ---
 
-<div dir="rtl">
+## What is an output?
 
-## ما هو المخرج؟
+An output is the work product Mibyan creates for you inside a conversation. It can be a document, deck, spreadsheet, page, or website. Outputs are previewable, editable, and reusable as context for follow-up requests.
 
-المخرج هو النتيجة التي ينشئها مبيان داخل المحادثة. يظهر في لوحة المعاينة، ويمكنك قراءته، طلب تعديل عليه، أو تصديره حسب نوعه.
+Think of the first version as a strong draft. Your job is to review it, give precise feedback, and guide it toward the final format you need.
 
-## الأنواع الأساسية
+## Output types
 
 <CardGroup cols={2}>
-<Card title="مستند" icon="file-lines">
-مناسب للتقارير، دراسات الجدوى، خطط العمل، المقالات، العقود، والمذكرات.
+<Card title="Documents" icon="file-lines">
+Best for reports, feasibility studies, business plans, proposals, memos, contracts, policies, articles, and structured long-form writing.
 </Card>
 
-<Card title="صفحة HTML" icon="browser">
-صفحة واحدة يمكن معاينتها مباشرة، مثل صفحة هبوط أو صفحة تعريفية أو نموذج أولي.
+<Card title="Presentations" icon="presentation">
+Best for pitch decks, company profiles, board updates, sales decks, training slides, launch decks, and visual narratives.
 </Card>
 
-<Card title="جدول بيانات" icon="table">
-مناسب للمؤشرات، التوقعات المالية، الجداول التشغيلية، المقارنات، وقوائم المتابعة.
+<Card title="Spreadsheets" icon="table">
+Best for KPI trackers, financial assumptions, comparison tables, budgets, operating plans, pricing models, and lists.
 </Card>
 
-<Card title="عرض تقديمي" icon="presentation">
-شرائح مرتبة لعرض استثماري، تسويقي، إداري، تدريبي، أو تعريفي.
+<Card title="HTML pages" icon="browser">
+Best for one-page prototypes, landing pages, campaign pages, service pages, and visual drafts that need immediate preview.
 </Card>
 
-<Card title="موقع متعدد الصفحات" icon="globe">
-مناسب للمواقع الصغيرة التي تحتاج إلى أكثر من صفحة، مثل الرئيسية، الخدمات، والأسئلة الشائعة.
+<Card title="Websites" icon="globe">
+Best for simple multi-page sites such as home, services, about, FAQ, and contact pages.
+</Card>
+
+<Card title="Strategic answers" icon="lightbulb">
+Best for brainstorming, planning, analysis, decision support, and turning vague ideas into a clearer brief.
 </Card>
 </CardGroup>
 
-## كيف تتعامل مع المخرج؟
+## How to request each output
 
-<Steps>
-<Step title="أنشئ">
-اكتب نوع المخرج المطلوب واذكر التفاصيل المهمة مثل الجمهور، عدد الصفحات أو الشرائح، ونبرة الكتابة.
-</Step>
+<AccordionGroup>
+<Accordion title="Documents">
+Name the document type, audience, required sections, length, tone, and any local context. For formal work, ask for a table of contents, executive summary, risks, assumptions, and next steps.
+</Accordion>
 
-<Step title="راجع">
-اقرأ النتيجة في لوحة المعاينة. ركّز على الهيكل، الدقة، النبرة، والأجزاء الناقصة.
-</Step>
+<Accordion title="Presentations">
+Specify the audience, number of slides, presentation goal, story arc, required sections, and visual direction. For investor decks, include stage, market, business model, traction, and funding ask.
+</Accordion>
 
-<Step title="عدّل">
-اطلب تعديلات محددة مثل: "اختصر المقدمة"، "أضف جدول تكاليف"، أو "اجعل الأسلوب أكثر رسمية".
-</Step>
+<Accordion title="Spreadsheets">
+Describe the rows, columns, calculations, assumptions, and how the sheet will be used. If the numbers are estimated, ask Mibyan to label assumptions clearly.
+</Accordion>
 
-<Step title="صدّر">
-عندما تصبح النتيجة جاهزة، استخدم خيارات التصدير المناسبة لنوع المخرج.
-</Step>
-</Steps>
+<Accordion title="Pages and websites">
+Describe the target user, message hierarchy, sections, call to action, brand tone, language, and device priorities. Mention if the page should be Arabic, English, RTL, or bilingual.
+</Accordion>
+</AccordionGroup>
 
-## نصائح لجودة أفضل
+## Reviewing outputs
 
-- اذكر البلد أو السوق إذا كان المحتوى تجارياً أو تنظيمياً.
-- أرفق بنية واضحة إذا كنت تريد أقساماً محددة.
-- اطلب نسخة أولية ثم نسخة محسّنة بدلاً من محاولة الوصول للنسخة النهائية من أول طلب.
-- عند العمل على عرض أو صفحة، صف الهوية البصرية والجمهور المستهدف.
+Use this review pass before you export or share anything:
 
-</div>
+- **Structure:** does the output include the right sections in the right order?
+- **Audience fit:** would the intended reader understand and trust it?
+- **Completeness:** are important details missing?
+- **Tone:** does it sound formal, persuasive, concise, or detailed enough?
+- **Accuracy:** do names, numbers, dates, locations, and claims need checking?
+- **Actionability:** does the output end with clear decisions, next steps, or deliverables?
+
+<Warning>
+Mibyan can help draft and organize complex work, but important legal, financial, medical, or regulatory content should still be reviewed by a qualified person before use.
+</Warning>
+
+## Editing an existing output
+
+You do not need to rewrite the whole prompt. Refer to the current output and ask for the exact change:
+
+```text
+Keep the same structure, but make the executive summary shorter and more suitable for a CEO.
+```
+
+```text
+Add a risk table with probability, impact, mitigation, and owner.
+```
+
+```text
+Turn this document into a 10-slide presentation for investors.
+```
+
+```text
+Use the same content, but rewrite it in a more premium marketing tone.
+```
+
+## Best practices
+
+- Start with a clear first version, then iterate.
+- Ask for questions first when the task is ambiguous.
+- Provide local context when the output depends on market realities.
+- Separate content feedback from formatting feedback.
+- For high-stakes work, ask Mibyan to produce assumptions and review notes alongside the output.

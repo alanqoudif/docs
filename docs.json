@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "مبيان",
+  "name": "Mibyan",
   "colors": {
     "primary": "#16A34A",
     "light": "#22C55E",
@@ -11,10 +11,10 @@
   "navigation": {
     "tabs": [
       {
-        "tab": "الدليل",
+        "tab": "Guides",
         "groups": [
           {
-            "group": "ابدأ هنا",
+            "group": "Start here",
             "pages": [
               "index",
               "quickstart",
@@ -22,7 +22,7 @@
             ]
           },
           {
-            "group": "استخدام المنصة",
+            "group": "Using Mibyan",
             "pages": [
               "features/artifacts",
               "features/export",
@@ -31,7 +31,7 @@
             ]
           },
           {
-            "group": "الوكلاء",
+            "group": "Agents",
             "pages": [
               "agents/overview",
               "agents/atlas",
@@ -42,10 +42,10 @@
         ]
       },
       {
-        "tab": "واجهة API",
+        "tab": "API",
         "groups": [
           {
-            "group": "للمطوّرين",
+            "group": "Developer access",
             "pages": [
               "api-reference/introduction"
             ]
@@ -56,12 +56,12 @@
     "global": {
       "anchors": [
         {
-          "anchor": "مبيان",
+          "anchor": "Mibyan",
           "href": "https://mibyanai.com",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "نقطة",
+          "anchor": "Nuqta",
           "href": "https://nuqtai.com",
           "icon": "newspaper"
         }
@@ -69,19 +69,19 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/atlas-swarm-core-1/public/mibyan-logo.webp",
+    "dark": "/atlas-swarm-core-1/public/mibyan-logo.webp"
   },
   "navbar": {
     "links": [
       {
-        "label": "الدعم",
+        "label": "Support",
         "href": "mailto:support@mibyanai.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "افتح مبيان",
+      "label": "Open Mibyan",
       "href": "https://mibyanai.com"
     }
   },
