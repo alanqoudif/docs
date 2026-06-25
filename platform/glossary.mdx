@@ -1,41 +1,44 @@
 ---
-title: "Terms and Naming"
-description: "How Mibyan, Atlas, Master, and atlas-swarm-core-1 relate to each other"
+title: "المصطلحات"
+description: "أهم الكلمات التي ستقابلها أثناء استخدام مبيان"
 ---
 
-## Core names
+<div dir="rtl">
+
+## أسماء أساسية
 
 <CardGroup cols={2}>
-<Card title="Mibyan" icon="sparkles">
-The user-facing product name. The production domain used in copy is `mibyanai.com`.
+<Card title="مبيان" icon="sparkles">
+اسم المنصة التي تستخدمها لإنشاء المستندات والعروض والجداول والصفحات.
 </Card>
 
-<Card title="Atlas Swarm Core One" icon="code-branch">
-The internal platform name used in these docs. The actual repository directory is `atlas-swarm-core-1`.
+<Card title="أطلس" icon="globe">
+المنسّق الرئيسي الذي يفهم طلبك ويوجّه العمل إلى التخصص المناسب.
 </Card>
 
-<Card title="Atlas" icon="globe">
-The main coordinator name used in docs and marketing. It receives the request, understands it, and chooses the right path.
+<Card title="الوكيل" icon="user-gear">
+تخصص داخل مبيان مثل الكتابة، العروض، الاستراتيجية، التسويق، العمليات، أو التحليل.
 </Card>
 
-<Card title="master" icon="gear">
-The internal ID for the main coordinator in code, especially in `src/data/mubayyan.ts`. When reading the code, treat `master` as Atlas.
+<Card title="المخرج" icon="box">
+النتيجة التي تظهر في المعاينة، مثل مستند أو عرض أو جدول أو صفحة.
 </Card>
 </CardGroup>
 
-## Documentation naming rule
+## مصطلحات الاستخدام
 
-Use "Mibyan" when discussing the product, "Atlas Swarm Core One" when discussing the platform or repository, and "Atlas" when discussing the coordinating agent. If `master` appears in the API, database, or code, it is Atlas's programmatic name, not an additional agent.
+- المحادثة: المكان الذي تكتب فيه طلبك وتتابع الردود والتعديلات.
+- المعاينة: اللوحة التي ترى فيها المخرج قبل التصدير.
+- التصدير: تحويل المخرج إلى ملف أو صيغة قابلة للمشاركة.
+- السياق: التفاصيل السابقة داخل المحادثة التي تساعد مبيان على فهم المطلوب.
+- التعديل: طلب تغيير على مخرج موجود بدلاً من إنشاء نتيجة جديدة من الصفر.
 
-## Product terms
+## كيف أكتب المصطلحات في الطلب؟
 
-- `projectId`: the current conversation or workspace ID. It appears in the `/chat/$projectId` route.
-- Artifact: a previewable or editable output, such as a document, HTML page, spreadsheet, presentation, or website.
-- Agent run: an agent execution cycle through `/api/public/agent-run`, including tool selection, tool execution, and events sent to the frontend.
-- Tool call: a function call inside the agent loop, such as `create_doc` or `create_website`.
-- Skill: instructions that can be injected into chat context, stored in the `skills` table and importable through the API.
-- Edge function: a Supabase function separate from the TanStack app, such as `generate-deck` and `export-deck-pptx`.
+استخدم كلمات بسيطة مثل: "أنشئ مستنداً"، "عدّل العرض"، "حوّل النتيجة إلى جدول"، "اجعل الصفحة RTL"، أو "استخدم نفس السياق السابق".
 
 <Note>
-This page matters when reviewing code or writing API docs because some marketing names are broader than the implementation names.
+إذا استخدمت مصطلحاً غير واضح، يمكن لمبيان أن يسألك أسئلة توضيحية قبل البدء.
 </Note>
+
+</div>

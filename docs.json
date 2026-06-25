@@ -1,20 +1,20 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mibyan / Atlas Swarm Core One",
+  "name": "مبيان",
   "colors": {
-    "primary": "#F97316",
-    "light": "#FB923C",
-    "dark": "#EA580C"
+    "primary": "#16A34A",
+    "light": "#22C55E",
+    "dark": "#15803D"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "الدليل",
         "groups": [
           {
-            "group": "Start Here",
+            "group": "ابدأ هنا",
             "pages": [
               "index",
               "quickstart",
@@ -22,42 +22,32 @@
             ]
           },
           {
-            "group": "Platform",
+            "group": "استخدام المنصة",
             "pages": [
-              "platform/architecture",
               "features/artifacts",
               "features/export",
-              "features/memory-and-swarm"
+              "features/memory-and-swarm",
+              "essentials/settings"
             ]
           },
           {
-            "group": "Agents",
+            "group": "الوكلاء",
             "pages": [
               "agents/overview",
               "agents/atlas",
               "agents/salem",
               "agents/specialists"
             ]
-          },
-          {
-            "group": "Development and Operations",
-            "pages": [
-              "development",
-              "developers/agent-tools",
-              "developers/data-model",
-              "operations/deployment"
-            ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "واجهة API",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "للمطوّرين",
             "pages": [
-              "api-reference/introduction",
-              "developers/api-overview"
+              "api-reference/introduction"
             ]
           }
         ]
@@ -66,12 +56,12 @@
     "global": {
       "anchors": [
         {
-          "anchor": "Mibyan",
+          "anchor": "مبيان",
           "href": "https://mibyanai.com",
           "icon": "book-open-cover"
         },
         {
-          "anchor": "Nuqta",
+          "anchor": "نقطة",
           "href": "https://nuqtai.com",
           "icon": "newspaper"
         }
@@ -85,13 +75,13 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
+        "label": "الدعم",
         "href": "mailto:support@mibyanai.com"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Open Mibyan",
+      "label": "افتح مبيان",
       "href": "https://mibyanai.com"
     }
   },
@@ -110,7 +100,6 @@
   "footer": {
     "socials": {
       "x": "https://x.com/nuqtai",
-      "github": "https://github.com/alanqoudif/atlas-swarm-core",
       "linkedin": "https://linkedin.com/company/nuqta-ai"
     }
   }

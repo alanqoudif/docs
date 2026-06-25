@@ -1,32 +1,41 @@
 ---
-title: "Memory and Agent Swarm"
-description: "What is currently enabled and what belongs to the upcoming vision"
+title: "السياق وفريق الوكلاء"
+description: "كيف يستفيد مبيان من المحادثة والمخرجات السابقة داخل نفس العمل"
 ---
 
-## Current memory
+<div dir="rtl">
 
-Mibyan's current context is based on the conversation, messages, and stored Artifacts. This means the agent can work with what was created inside the current project and read an existing Artifact before editing it.
+## ماذا يتذكر مبيان؟
 
-There is currently no guarantee that all of a user's conversations are automatically merged into a general long-term memory for every request. Some interfaces and components mention memory, but it should be documented as an in-development capability unless it is connected to a complete backend.
-
-## Current Agent Swarm
-
-The product concept is a team of agents working around a single request. The current implementation is closer to:
-
-- Analyzing request intent.
-- Choosing a suitable agent or persona.
-- Running specific tools in a sequential loop.
-- Showing agent work status visually.
+يعتمد مبيان على سياق المحادثة الحالية والمخرجات المرتبطة بها. هذا يعني أنك تستطيع أن تطلب تعديلات على نتيجة سابقة داخل نفس العمل، أو تطلب منه استخدام ما كتبه قبل قليل في مخرج جديد.
 
 <Info>
-This does not mean every request actually runs 100 independent agents in the background. The phrase "up to 100 agents" appears in product copy as an ambition and visual experience more than as a fixed API contract.
+للحصول على أفضل نتيجة، أبقِ التفاصيل المهمة داخل نفس المحادثة، أو أعد ذكرها بوضوح إذا فتحت عملاً جديداً.
 </Info>
 
-## How should this be documented for users?
+## كيف يعمل فريق الوكلاء؟
 
-Use precise wording:
+مبيان يقرأ طلبك ويختار الوكيل أو الأسلوب الأنسب. قد يمر الطلب على أكثر من تخصص: وكيل للكتابة، آخر للعرض، وآخر للتحليل أو الجداول. أنت لا تحتاج إلى اختيار كل ذلك يدوياً في كل مرة، لكن يمكنك توجيهه إذا أردت.
 
-- Correct: "Mibyan routes the request to the right agent and uses multiple tools to create the output."
-- Correct: "Current context includes the conversation and its related outputs."
-- Avoid: "All your data is saved as long-term memory across all projects" unless it has actually been wired up.
-- Avoid: "100 agents always work in parallel" unless that becomes part of the implementation.
+## متى تعطيه سياقاً إضافياً؟
+
+- إذا كان لديك جمهور محدد أو سوق محدد.
+- إذا كان المطلوب مرتبطاً بمخرج سابق.
+- إذا كانت هناك قيود قانونية أو مالية أو تشغيلية.
+- إذا كنت تريد أسلوباً معيناً مثل رسمي، تسويقي، مختصر، أو تفصيلي.
+
+## مثال
+
+بدلاً من:
+
+```text
+اكتب عرضاً عن المشروع.
+```
+
+اكتب:
+
+```text
+اكتب عرضاً من 10 شرائح لمستثمرين عن تطبيق توصيل طرود في عُمان. استخدم الأرقام التي ذكرتها في المحادثة السابقة، واجعل النبرة واثقة ومختصرة.
+```
+
+</div>

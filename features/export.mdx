@@ -1,41 +1,50 @@
 ---
-title: "Export"
-description: "DOCX, PPTX, XLSX, and export routes in Mibyan"
+title: "التصدير"
+description: "كيف تجهّز مخرجات مبيان للتحميل والمشاركة"
 ---
 
-## Overview
+<div dir="rtl">
 
-Export in Mibyan is split across multiple paths because each Artifact type has different requirements. Documents, spreadsheets, and presentations do not all use the same code.
+## نظرة عامة
 
-## Paths
+بعد إنشاء المخرج ومراجعته، يمكنك تجهيز النسخة النهائية للتحميل أو المشاركة. خيارات التصدير تختلف حسب نوع المخرج: مستند، جدول، عرض، صفحة HTML، أو موقع.
+
+## ماذا تختار؟
 
 <AccordionGroup>
-<Accordion title="DOCX">
-Documents usually start as Markdown. Routes such as `file-artifact` and `restyle-docx` handle Office file conversion or formatting. Email and document templates rely on libraries such as `docx`.
+<Accordion title="مستند Word">
+استخدمه للتقارير، دراسات الجدوى، العقود، والخطط التي تحتاج إلى مراجعة أو مشاركة رسمية.
 </Accordion>
 
-<Accordion title="XLSX">
-Spreadsheets are created as structured data through `create_sheet`, then can be exported using SheetJS `xlsx`.
+<Accordion title="جدول Excel">
+استخدمه للأرقام، الميزانيات، مؤشرات الأداء، الجداول التشغيلية، والمقارنات.
 </Accordion>
 
-<Accordion title="PPTX">
-Presentations use more than one path: `create_slides` to produce the presentation structure, `generate-deck` to create a richer deck, and `export-deck-pptx` for export. There is also a dependency on `pptxgenjs`.
+<Accordion title="عرض PowerPoint">
+استخدمه للعروض الاستثمارية، العروض الداخلية، عروض المبيعات، والمواد التدريبية.
 </Accordion>
 
-<Accordion title="HTML / Website">
-HTML pages are previewed directly, and multi-page websites are published through the `/sites/{slug}` route.
+<Accordion title="HTML أو موقع">
+استخدمه عندما تريد صفحة قابلة للمعاينة أو نموذج موقع يمكن مراجعته بصرياً.
 </Accordion>
 </AccordionGroup>
 
-## Important limits
+## قبل التصدير
+
+- راجع العنوان والأقسام الرئيسية.
+- تأكد من الأرقام والأسماء والروابط.
+- اطلب من مبيان تحسين النبرة أو تقليل التكرار.
+- للعروض، راجع ترتيب القصة من المشكلة إلى الحل إلى الخطة.
 
 <Warning>
-Matching the visual HTML preview to the final PPTX file is not currently guaranteed 100%. The internal plan in `.lovable/plan.md` points to future work on snapshot export and presets.
+قد تختلف بعض التفاصيل البصرية بين المعاينة وملف العرض النهائي. للعروض المهمة، راجع ملف PowerPoint بعد تحميله واطلب تعديلات إضافية إذا احتجت.
 </Warning>
 
-## User tips
+## أمثلة طلبات تصدير
 
-- Ask for the format explicitly: DOCX, PPTX, XLSX, HTML, or a multi-page website.
-- For presentations, specify the number of slides and audience type.
-- For long documents, specify the word or page count and required sections.
-- For spreadsheets, specify the columns and row count if they matter.
+- "حوّل هذا التقرير إلى ملف Word منسق بعناوين واضحة."
+- "جهّز هذا الجدول كملف Excel مع أعمدة قابلة للقراءة."
+- "اختصر العرض إلى 8 شرائح وجهّزه للتقديم أمام مستثمرين."
+- "حسّن الصفحة لتكون مناسبة للعرض على الجوال قبل مشاركتها."
+
+</div>

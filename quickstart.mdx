@@ -1,56 +1,64 @@
 ---
-title: "Getting Started with Mibyan"
-description: "From the first account to the first Artifact inside the workspace"
+title: "البدء السريع"
+description: "من إنشاء الحساب إلى أول مخرج داخل مبيان"
 ---
 
-## The short version
+<div dir="rtl">
 
-Every Mibyan project is a conversation with a `projectId`. Inside the conversation, the user writes a request, Atlas decides which agent or tool fits best, and the result appears as an Artifact in the preview panel.
+## الفكرة باختصار
 
-## Usage flow
+كل عمل في مبيان يبدأ من محادثة. اكتب ما تريد إنجازه، وسيحوّل مبيان الطلب إلى مخرج قابل للمعاينة والتعديل مثل مستند، عرض، جدول، صفحة، أو موقع.
+
+## خطوات الاستخدام
 
 <Steps>
-<Step title="Create an account or sign in">
-The app supports Supabase Auth with email and password, OAuth through Lovable Cloud Auth, and phone-number OTP when the AutomaAPI keys are enabled.
+<Step title="أنشئ حساباً أو سجّل الدخول">
+افتح مبيان وسجّل الدخول بالطريقة المتاحة لك. بعد الدخول ستصل إلى مساحة العمل والمحادثات.
 </Step>
 
-<Step title="Start from the Composer">
-From the home page, write your first request, such as: "Write a pitch deck for a delivery company in Oman" or "Build an Arabic landing page for a real estate service."
+<Step title="اكتب طلبك بوضوح">
+ابدأ بطلب مباشر مثل: "اكتب عرضاً استثمارياً لتطبيق توصيل في عُمان" أو "أنشئ صفحة عربية لخدمة استشارات قانونية".
 </Step>
 
-<Step title="Follow the agent and result">
-The platform opens `/chat/$projectId` and starts SSE events from `/api/public/agent-run`. You will see progress messages, tool calls, and then an Artifact in the side panel.
+<Step title="راجع النتيجة في المعاينة">
+ستظهر رسائل تقدم أثناء العمل، ثم تظهر النتيجة في لوحة المعاينة. اقرأ المخرج وتأكد من أنه يطابق المطلوب.
 </Step>
 
-<Step title="Edit or export">
-You can request changes to the same output. Editing tools read the current Artifact, create a new version, and save versions in `artifact_versions`.
+<Step title="اطلب تعديلات أو صدّر الملف">
+يمكنك أن تطلب تعديلات على نفس المخرج، مثل تغيير النبرة، إضافة قسم، اختصار النص، أو تجهيز الملف للتصدير.
 </Step>
 </Steps>
 
-## Good prompt examples
+## أمثلة طلبات جيدة
 
 <CardGroup cols={2}>
-<Card title="Presentation" icon="presentation">
-Write a 10-slide Arabic pitch deck for a parcel delivery app in Oman, aimed at investors, with the market problem, solution, revenue model, and 12-month plan.
+<Card title="عرض تقديمي" icon="presentation">
+اكتب عرضاً عربياً من 10 شرائح لتطبيق توصيل طرود في عُمان، موجهاً للمستثمرين، مع المشكلة والحل ونموذج الإيرادات وخطة 12 شهراً.
 </Card>
 
-<Card title="Document" icon="file-lines">
-Write a detailed feasibility study for a specialty cafe in Muscat, with estimated costs, competitor analysis, risks, and an opening plan.
+<Card title="مستند" icon="file-lines">
+اكتب دراسة جدوى مفصلة لمقهى مختص في مسقط، مع التكاليف المتوقعة، تحليل المنافسين، المخاطر، وخطة الافتتاح.
 </Card>
 
-<Card title="HTML page" icon="browser">
-Build an RTL landing page for a legal consulting service, with calm colors, service sections, FAQs, and a contact form.
+<Card title="صفحة ويب" icon="browser">
+أنشئ صفحة هبوط عربية باتجاه RTL لخدمة استشارات قانونية، مع ألوان هادئة، أقسام الخدمات، الأسئلة الشائعة، ونموذج تواصل.
 </Card>
 
-<Card title="Spreadsheet" icon="table">
-Create a monthly KPI sheet for a B2B sales team, 20 rows, with targets, results, achievement percentage, and executive notes.
+<Card title="جدول بيانات" icon="table">
+أنشئ جدول مؤشرات شهرية لفريق مبيعات B2B من 20 صفاً، مع الهدف، النتيجة، نسبة الإنجاز، وملاحظات تنفيذية.
 </Card>
 </CardGroup>
 
-## User settings
+## ماذا أكتب في الطلب؟
 
-From `/settings`, the user can edit their name, phone number, and preferences. The `profiles.preferences` field stores custom instructions that can be passed into the agent context.
+- الهدف النهائي: تقرير، عرض، صفحة، جدول، أو موقع.
+- الجمهور: مستثمرون، إدارة، عملاء، فريق داخلي، أو جهة حكومية.
+- اللغة والنبرة: عربية فصحى، لهجة محلية، رسمية، تسويقية، مختصرة، أو تحليلية.
+- الحجم: عدد الصفحات، الشرائح، الأقسام، الصفوف، أو الكلمات.
+- القيود: البلد، القطاع، الميزانية، الهوية البصرية، أو صيغة التصدير.
 
 <Tip>
-For best results, specify the audience, desired format, number of pages or slides, tone, and any business or local constraints that should be respected.
+إذا لم تكن متأكداً من الصياغة، ابدأ بطلب بسيط ثم اطلب من مبيان أن يسألك أسئلة توضيحية قبل إنشاء النسخة النهائية.
 </Tip>
+
+</div>

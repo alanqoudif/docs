@@ -1,42 +1,34 @@
 ---
-title: "Salem: Presentations"
-description: "How Mibyan produces pitch decks and PPTX presentations"
+title: "سالم: العروض التقديمية"
+description: "كيف تطلب عروضاً تقديمية وعروضاً استثمارية أفضل من مبيان"
 ---
 
-## Salem's role
+<div dir="rtl">
 
-Salem is the presentation specialist. It is used for requests such as pitch decks, investor presentations, company decks, and visual storytelling sequences.
+## ما دور سالم؟
 
-## Available paths
+سالم هو متخصص العروض التقديمية داخل مبيان. استخدمه عندما تريد عرضاً استثمارياً، عرض مبيعات، عرض شركة، مادة تدريبية، أو قصة بصرية مقسمة إلى شرائح.
 
-<AccordionGroup>
-<Accordion title="agent-run path">
-Inside the agent loop, the `create_slides` tool produces a JSON presentation structure: title, slides, bullet points, and notes. This path is fast and suitable for previewing and editing inside the conversation.
-</Accordion>
+## ما الذي يجب أن تكتبه؟
 
-<Accordion title="generate-deck path">
-The Supabase Edge Function `generate-deck` is a broader production pipeline. It streams events such as `status`, `brief`, `identity`, `storyboard`, `slide_html`, `ready`, and `error`. This path is closer to producing a full deck with identity, story, and slide HTML.
-</Accordion>
-
-<Accordion title="PPTX export">
-The `export-deck-pptx` function exists, along with other routes inside `file-artifact`. The internal plan notes that matching the HTML preview to PPTX export is still an improvement area.
-</Accordion>
-</AccordionGroup>
-
-## Best prompt for Salem
-
-Write the request with:
-
-- Audience: investors, management, customers, or an internal team.
-- Number of slides.
-- Goal of the presentation.
-- Visual style or brand direction.
-- Required sections, such as problem, solution, market, financial model, team, and plan.
+- الجمهور: مستثمرون، إدارة، عملاء، أو فريق داخلي.
+- عدد الشرائح.
+- هدف العرض: إقناع، شرح، بيع، تدريب، أو تلخيص.
+- النبرة والأسلوب البصري.
+- الأقسام المطلوبة مثل المشكلة، الحل، السوق، النموذج المالي، الفريق، والخطة.
 
 ```text
-Create a 12-slide Arabic pitch deck for a real estate SaaS company in Saudi Arabia, aimed at seed investors, with a premium minimal style, traction, financial model, and a clear ask.
+أنشئ عرضاً عربياً من 12 شريحة لشركة SaaS عقارية في السعودية، موجهاً لمستثمري مرحلة Seed، بأسلوب بصري فاخر وبسيط، مع traction، نموذج مالي، وطلب استثماري واضح.
 ```
 
-## Known limits
+## نصائح قبل التصدير
 
-PPTX export may not always match the visual preview perfectly. For high-stakes final decks, review the exported file and adjust the template or identity through the prompt when needed.
+- اطلب نسخة مختصرة أولاً إذا كان الموضوع كبيراً.
+- راجع ترتيب القصة: لماذا الآن؟ ما المشكلة؟ ما الحل؟ ما الدليل؟ ما الطلب؟
+- إذا كان العرض مهماً، حمّل ملف PowerPoint وراجعه بصرياً قبل إرساله.
+
+<Tip>
+يمكنك أن تطلب من سالم تحسين عرض موجود: "أعد ترتيب الشرائح لتكون أقوى للمستثمرين" أو "اختصر كل شريحة إلى 3 نقاط فقط".
+</Tip>
+
+</div>

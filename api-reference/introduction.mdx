@@ -1,54 +1,37 @@
 ---
-title: "API Reference"
-description: "An initial reference for API endpoints used inside Mibyan"
+title: "واجهة API"
+description: "حالة واجهة API العامة في مبيان وكيف تطلب الوصول"
 ---
 
+<div dir="rtl">
+
 <Note>
-  The public developer API is still being prepared. This reference documents the routes that actually exist in `atlas-swarm-core-1/src/routes/api/public`.
+واجهة API العامة لمبيان لا تزال قيد التجهيز. سنضيف هنا طريقة الاستخدام، المصادقة، والأمثلة العملية عندما تصبح الواجهة مستقرة للمستخدمين والمطوّرين.
 </Note>
 
-## Base URL
+## لمن هذه الصفحة؟
 
-In production, use the Mibyan domain:
+هذه الصفحة للمستخدمين أو الشركاء الذين يريدون ربط مبيان بتطبيقاتهم، أنظمة داخلية، أو أدوات تشغيل خارجية.
 
-```text
-https://mibyanai.com
-```
+## ما الذي سيضاف لاحقاً؟
 
-In local development, use the Vite dev server:
+- طريقة إنشاء مفتاح API أو الحصول على صلاحية الوصول.
+- أمثلة لإرسال طلب وإنشاء مخرج.
+- أمثلة للقراءة والتصدير.
+- حدود الاستخدام وسياسات الأمان.
+- رسائل الأخطاء الشائعة وطريقة التعامل معها.
 
-```text
-http://localhost:5173
-```
+## حالياً
 
-## Authentication
+إذا كنت تحتاج إلى تكامل API الآن، تواصل مع فريق مبيان واشرح حالة الاستخدام المطلوبة:
 
-Most routes require a Supabase access token:
+- ما التطبيق أو النظام الذي تريد ربطه؟
+- ما نوع المخرجات المطلوبة؟
+- هل تحتاج إلى إنشاء مستندات، عروض، جداول، أو مواقع؟
+- ما حجم الاستخدام المتوقع؟
 
-```http
-Authorization: Bearer <supabase_access_token>
-```
-
-## Key routes
-
-<CardGroup cols={2}>
-<Card title="Agent run" icon="bolt" href="/developers/api-overview">
-`POST /api/public/agent-run` runs the agent loop and streams SSE.
+<Card title="تواصل مع الدعم" icon="envelope" href="mailto:support@mibyanai.com">
+أرسل وصف التكامل المطلوب وسيتم توجيهك للخطوات المناسبة عند توفر الوصول.
 </Card>
 
-<Card title="Classifier" icon="route">
-`POST /api/public/classify` classifies the request and suggests the agent and questions.
-</Card>
-
-<Card title="Skills" icon="puzzle-piece">
-`GET/POST /api/public/skills` lists skills or chooses a suitable skill.
-</Card>
-
-<Card title="AI models" icon="brain">
-`GET /api/public/ai/models` lists allowed models for AI proxy integrations.
-</Card>
-</CardGroup>
-
-## OpenAPI
-
-The `api-reference/openapi.json` file contains an initial specification for the most important routes. Not every app route is documented there yet, but it is no longer the default Plant Store specification.
+</div>

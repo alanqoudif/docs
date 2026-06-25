@@ -1,44 +1,38 @@
 ---
-title: "Atlas: Main Coordinator"
-description: "The role of Atlas / master in understanding requests and routing tools"
+title: "أطلس: المنسّق الرئيسي"
+description: "دور أطلس في فهم طلبك وتوجيهه إلى الوكيل المناسب"
 ---
 
-## Who is Atlas?
+<div dir="rtl">
 
-Atlas is the product name for the main coordinator. In `src/data/mubayyan.ts`, its internal ID is `master`, and some UI surfaces use the Arabic name "Master". Its role is not to produce everything by itself, but to understand the request and route it to the best tool or agent.
+## من هو أطلس؟
 
-## What does it do?
+أطلس هو المنسّق الرئيسي داخل مبيان. دوره أن يفهم طلبك، يحدد نوع العمل، ثم يوجهه إلى التخصص المناسب حتى تحصل على نتيجة مترابطة بدل إجابة عامة.
 
-- Reads the user message and conversation context.
-- Decides whether the request is chat, a document, a presentation, a website, an HTML page, or a spreadsheet.
-- Calls tools such as `create_doc`, `create_html`, `create_sheet`, or `create_website`.
-- Sends progress events to the frontend over SSE.
-- Saves the output in `artifacts` and displays it in `ArtifactCanvas`.
+## ماذا يفعل؟
 
-## Execution flow
+- يقرأ الرسالة والسياق السابق في المحادثة.
+- يحدد هل المطلوب مستند، عرض، صفحة، موقع، جدول، أو مجرد نقاش.
+- يختار الوكيل أو التخصص الأنسب.
+- يحافظ على ترابط النتيجة بين الأقسام.
+- يساعدك على تعديل المخرج بناءً على ملاحظاتك.
+
+## متى أذكر أطلس في الطلب؟
+
+غالباً لا تحتاج إلى ذلك. لكن يمكنك أن تطلب منه التنسيق بين أكثر من تخصص، مثل:
 
 ```text
-user message
-  -> agent-run
-  -> classify / persona
-  -> tool call
-  -> OpenRouter generation
-  -> Supabase artifact
-  -> streamed result to UI
+يا أطلس، نسّق بين التحليل المالي والكتابة التسويقية واكتب عرضاً مختصراً للإدارة.
 ```
-
-## Current implementation limits
-
-<Info>
-Atlas drives a bounded tool loop inside a single request. The phrase "Agent Swarm up to 100 agents" appears in some marketing copy, but it does not currently mean 100 independent parallel background processes for every request.
-</Info>
 
 ## Example
 
-A request like:
+طلب مثل:
 
 ```text
-Write a detailed feasibility study for a specialty cafe in Muscat with a cost table and opening plan.
+اكتب دراسة جدوى لمقهى مختص في مسقط، مع جدول تكاليف وخطة افتتاح.
 ```
 
-Atlas may route it to Sara to create a document, adding Nasser-style instructions for the strategic side and Mira-style instructions for tables. In practice, execution happens through `create_doc`, and possibly `create_sheet` if the user asks for a separate spreadsheet.
+قد يجمع أطلس بين أسلوب سارة في كتابة المستند، وناصر في التحليل التجاري، وميرا في تنظيم الجداول.
+
+</div>

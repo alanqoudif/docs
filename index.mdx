@@ -1,66 +1,62 @@
 ---
-title: "Mibyan"
-description: "Documentation for the Mibyan platform, agents, tools, API, and project operations"
+title: "مبيان"
+description: "دليل استخدام منصة مبيان لإنشاء المستندات والعروض والمواقع والجداول بالذكاء الاصطناعي"
 ---
 
-Mibyan is Nuqta's Arabic-first multi-agent platform. Internally, the codebase is named `atlas-swarm-core-1`; in the product it appears as Mibyan, and the main coordinator is marketed as Atlas while some files still call it `master`.
+<div dir="rtl">
 
-These docs describe the platform as it is actually built: a TanStack Start app deployed on Cloudflare, using Supabase for authentication and data, OpenRouter for generation, and Supabase Edge Functions for the deck production pipeline.
+مبيان منصة عربية تساعدك على تحويل الفكرة إلى مخرج جاهز: تقرير، دراسة جدوى، عرض تقديمي، صفحة ويب، جدول بيانات، أو موقع بسيط. اكتب طلبك بلغة طبيعية، واترك مبيان يختار الوكيل المناسب ويعرض النتيجة داخل مساحة العمل.
 
 <Card
-  title="Quickstart"
+  title="ابدأ الآن"
   icon="rocket"
   href="/quickstart"
   horizontal
 >
-  Create an account, open a conversation, and request your first document, deck, or website.
+  أنشئ حسابك، افتح محادثة، واطلب أول مستند أو عرض أو صفحة من مبيان.
 </Card>
 
-## What does the platform do?
+## ماذا يمكنك أن تنجز؟
 
-Mibyan receives the user's request in a chat interface, analyzes it, chooses the right agent, and creates an Artifact that can be previewed and exported. The core output types are Markdown documents, HTML pages, spreadsheets, presentations, and multi-page websites.
+تتعامل مع مبيان كفريق عمل داخل محادثة واحدة. تشرح المطلوب، تحدد الجمهور والشكل النهائي، ثم تظهر النتيجة في لوحة المعاينة لتراجعها وتطلب تعديلها أو تصديرها.
 
 <Columns cols={2}>
   <Card
-    title="Architecture"
-    icon="code"
-    href="/platform/architecture"
-  >
-    Browser, Cloudflare Worker, Supabase, OpenRouter, and the deck pipeline.
-  </Card>
-  <Card
-    title="Agents"
-    icon="users"
-    href="/agents/overview"
-  >
-    Atlas, Salem, Sara, Nasser, Layla, Omar, Mira, and Kimi Claw.
-  </Card>
-  <Card
-    title="Artifacts"
-    icon="box"
+    title="المستندات والتقارير"
+    icon="file-lines"
     href="/features/artifacts"
   >
-    How outputs are created, saved, previewed, and updated inside a project.
+    دراسات جدوى، خطط عمل، تقارير، عقود، مذكرات داخلية، ومحتوى طويل منظم.
   </Card>
   <Card
-    title="API"
-    icon="terminal"
-    href="/api-reference/introduction"
+    title="العروض التقديمية"
+    icon="presentation"
+    href="/agents/salem"
   >
-    An initial reference for the internal API and SSE used by the app.
+    عروض استثمارية وتسويقية مع قصة واضحة، شرائح مرتبة، وملاحظات قابلة للتحسين.
+  </Card>
+  <Card
+    title="الصفحات والمواقع"
+    icon="browser"
+    href="/features/artifacts"
+  >
+    صفحات HTML عربية أو مواقع صغيرة يمكن معاينتها وتعديلها من نفس المحادثة.
+  </Card>
+  <Card
+    title="الجداول والتحليل"
+    icon="table"
+    href="/features/artifacts"
+  >
+    جداول KPI، توقعات مالية، مقارنات، قوائم تشغيل، ومخرجات قابلة للتصدير.
   </Card>
 </Columns>
 
-## Sources of truth
+## كيف تستخدم الدليل؟
 
-These docs were derived from the app files themselves:
+ابدأ بصفحة البدء السريع، ثم انتقل إلى نوع المخرج الذي تريد إنشاءه. إذا كنت مطوراً وتحتاج إلى تكامل API، ستجد صفحة منفصلة توضّح الحالة الحالية وما المطلوب للحصول على الوصول.
 
-- `atlas-swarm-core-1/src/data/mubayyan.ts` for agent definitions.
-- `atlas-swarm-core-1/src/server/agent-tools.server.ts` for agent tools.
-- `atlas-swarm-core-1/src/routes/api/public/*` for API endpoints.
-- `atlas-swarm-core-1/supabase/migrations/*` and `src/integrations/supabase/types.ts` for data.
-- `atlas-swarm-core-1/src/components/docs/*` for the Arabic in-app documentation.
+<Tip>
+لأفضل نتيجة، اذكر الهدف، الجمهور، اللغة، عدد الصفحات أو الشرائح، النبرة المطلوبة، وأي قيود مهمة مثل السوق أو الميزانية أو الهوية البصرية.
+</Tip>
 
-<Warning>
-Some in-app marketing pages describe capabilities broader than the current implementation, such as general long-term memory or actually running 100 agents in parallel. These docs distinguish what exists now from the roadmap.
-</Warning>
+</div>

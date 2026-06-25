@@ -1,59 +1,63 @@
 ---
-title: "Artifacts and Outputs"
-description: "How Mibyan creates documents, pages, spreadsheets, presentations, and websites"
+title: "المخرجات"
+description: "أنواع الملفات والنتائج التي يمكنك إنشاؤها داخل مبيان"
 ---
 
-## What is an Artifact?
+<div dir="rtl">
 
-An Artifact is an output saved inside the user's project. It appears in the preview panel and can be edited or exported. Each Artifact is linked to a conversation and user, and its versions are stored in the `artifact_versions` table.
+## ما هو المخرج؟
 
-## Core types
+المخرج هو النتيجة التي ينشئها مبيان داخل المحادثة. يظهر في لوحة المعاينة، ويمكنك قراءته، طلب تعديل عليه، أو تصديره حسب نوعه.
+
+## الأنواع الأساسية
 
 <CardGroup cols={2}>
-<Card title="Document" icon="file-lines">
-Markdown content for reports, plans, articles, and contracts. Rendered through `DocArtifact`.
+<Card title="مستند" icon="file-lines">
+مناسب للتقارير، دراسات الجدوى، خطط العمل، المقالات، العقود، والمذكرات.
 </Card>
 
-<Card title="HTML" icon="browser">
-A full HTML page with inline CSS and JS. Rendered through `HtmlArtifact`.
+<Card title="صفحة HTML" icon="browser">
+صفحة واحدة يمكن معاينتها مباشرة، مثل صفحة هبوط أو صفحة تعريفية أو نموذج أولي.
 </Card>
 
-<Card title="Sheet" icon="table">
-Spreadsheet data exportable as XLSX. Created through `create_sheet`.
+<Card title="جدول بيانات" icon="table">
+مناسب للمؤشرات، التوقعات المالية، الجداول التشغيلية، المقارنات، وقوائم المتابعة.
 </Card>
 
-<Card title="Slides" icon="presentation">
-A slide structure or deck pipeline. Previewed through presentation components and exported through PPTX routes.
+<Card title="عرض تقديمي" icon="presentation">
+شرائح مرتبة لعرض استثماري، تسويقي، إداري، تدريبي، أو تعريفي.
 </Card>
 
-<Card title="Website" icon="globe">
-A multi-page website published at `/sites/{slug}` and stored in `websites` and `website_pages`.
+<Card title="موقع متعدد الصفحات" icon="globe">
+مناسب للمواقع الصغيرة التي تحتاج إلى أكثر من صفحة، مثل الرئيسية، الخدمات، والأسئلة الشائعة.
 </Card>
 </CardGroup>
 
-## Artifact lifecycle
+## كيف تتعامل مع المخرج؟
 
 <Steps>
-<Step title="Create">
-The agent calls a tool such as `create_doc` or `create_website`.
+<Step title="أنشئ">
+اكتب نوع المخرج المطلوب واذكر التفاصيل المهمة مثل الجمهور، عدد الصفحات أو الشرائح، ونبرة الكتابة.
 </Step>
 
-<Step title="Store">
-The server uses the Supabase admin client to store the output in `artifacts`, linked to `conversationId` and `userId`.
+<Step title="راجع">
+اقرأ النتيجة في لوحة المعاينة. ركّز على الهيكل، الدقة، النبرة، والأجزاء الناقصة.
 </Step>
 
-<Step title="Preview">
-The frontend receives a `tool_result` event and opens the output in `ArtifactCanvas`.
+<Step title="عدّل">
+اطلب تعديلات محددة مثل: "اختصر المقدمة"، "أضف جدول تكاليف"، أو "اجعل الأسلوب أكثر رسمية".
 </Step>
 
-<Step title="Edit">
-When editing, the tool reads the current version through `read_artifact` or directly from the database, then creates a new version.
+<Step title="صدّر">
+عندما تصبح النتيجة جاهزة، استخدم خيارات التصدير المناسبة لنوع المخرج.
 </Step>
 </Steps>
 
-## Where is the code?
+## نصائح لجودة أفضل
 
-- Preview components: `src/components/mubayyan/*Artifact.tsx`.
-- Creation tools: `src/server/agent-tools.server.ts`.
-- Frontend stores: `src/lib/artifactsStore.ts` and `src/lib/conversationsStore.ts`.
-- Supabase types: `src/integrations/supabase/types.ts`.
+- اذكر البلد أو السوق إذا كان المحتوى تجارياً أو تنظيمياً.
+- أرفق بنية واضحة إذا كنت تريد أقساماً محددة.
+- اطلب نسخة أولية ثم نسخة محسّنة بدلاً من محاولة الوصول للنسخة النهائية من أول طلب.
+- عند العمل على عرض أو صفحة، صف الهوية البصرية والجمهور المستهدف.
+
+</div>
