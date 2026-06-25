@@ -1,0 +1,132 @@
+---
+title: "Mibyan 4.1 Model"
+sidebarTitle: "Mibyan 4.1"
+description: "Learn about Mibyan 4.1 (نموذج مبيان 4.1), the advanced Arabic-first model trained by Nuqta and built on Kimi K2.6."
+---
+
+## Overview | نظرة عامة
+
+**Mibyan 4.1** is a state-of-the-art, Arabic-first large language model developed and trained by **Nuqta for Technology** (نقطة للتكنولوجيا), an Omani AI pioneer. Designed specifically for professional business writing, complex reasoning, structured outputs, and agentic workflows, Mibyan 4.1 is built on top of **Kimi K2.6** by Moonshot AI.
+
+By combining Nuqta's specialized training with Kimi K2.6's industry-leading foundation, Mibyan 4.1 offers unparalleled performance for Arabic-speaking enterprises, developers, and creators.
+
+<Card title="Arabic-First Intelligence" icon="language" href="#arabic-first-capabilities">
+  Deeply optimized for formal business Arabic (Fusha), regional dialects, and the specific cultural and legal context of Oman and the GCC.
+</Card>
+
+---
+
+## Technical Specifications | المواصفات الفنية
+
+Mibyan 4.1 inherits and enhances the cutting-edge architecture of Kimi K2.6:
+
+* **Architecture**: Sparse Mixture-of-Experts (MoE) with Multi-Head Latent Attention (MLA) and Swish-Gated Linear Unit (SwiGLU) activation.
+* **Parameters**: **1.04 Trillion total parameters**, with **32 Billion active parameters** per token forward pass, ensuring high intelligence with rapid inference.
+* **Context Window**: **256,000 tokens** (262,144) via YaRN, enabling the processing of entire books, financial sheets, or complex legal documents in a single prompt.
+* **Multimodality**: Native support for high-resolution images and video processing powered by a **400M-parameter MoonViT-3D vision encoder**.
+* **Reasoning Modes**: Supports both high-speed **Instant** mode and deep-reasoning **Thinking** mode for complex multi-step tasks.
+
+---
+
+## Key Capabilities | القدرات الأساسية
+
+<CardGroup cols={2}>
+  <Card title="Advanced Reasoning" icon="brain">
+    Excels at complex logical reasoning, strategic planning, and multi-step problem solving.
+  </Card>
+  <Card title="Arabic Business Writing" icon="pen-nib">
+    Generates highly polished, culturally accurate, and grammatically perfect Arabic feasibility studies, reports, and proposals.
+  </Card>
+  <Card title="Agentic Swarms" icon="network-wired">
+    Powers Mibyan's coordinated agent workflows (Claw Groups), allowing multiple specialist agents to collaborate in parallel.
+  </Card>
+  <Card title="Structured Outputs" icon="brackets-curly">
+    Provides highly reliable JSON generation and function calling for seamless API and database integration.
+  </Card>
+</CardGroup>
+
+---
+
+## Training & Fine-Tuning | التدريب والتطوير
+
+Mibyan 4.1 was developed by Nuqta through a multi-stage training process:
+
+1. **Base Foundation**: Built on the open-weights **Kimi K2.6** model, inheriting state-of-the-art coding and reasoning capabilities.
+2. **Arabic Alignment**: Fine-tuned on a massive, high-quality dataset of Arabic text, with a focus on business, legal, financial, and administrative domains.
+3. **GCC & Omani Context**: Aligned with local regulations, business practices, terminology, and cultural nuances of Oman and the wider Arabian Gulf.
+4. **RLHF & Safety**: Aligned using Reinforcement Learning from Human Feedback (RLHF) to ensure helpful, safe, and professional responses.
+
+---
+
+## API Integration | التكامل البرمجي
+
+You can integrate Mibyan 4.1 into your applications using our OpenAI-compatible API.
+
+### Model Identifier
+Use the following model ID in your API requests:
+```text
+mibyan-4.1
+```
+
+### Code Examples
+
+<CodeGroup>
+
+```python Python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://mibyanai.com/api/public/v1",
+    api_key="mb-..." # Your Mibyan API Key
+)
+
+response = client.chat.completions.create(
+    model="mibyan-4.1",
+    messages=[
+        {
+            "role": "user",
+            "content": "اكتب خطة عمل مختصرة لشركة توصيل طرود في مسقط."
+        }
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+```javascript Node.js
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  baseURL: "https://mibyanai.com/api/public/v1",
+  apiKey: "mb-..." // Your Mibyan API Key
+});
+
+const completion = await openai.chat.completions.create({
+  model: "mibyan-4.1",
+  messages: [
+    { 
+      role: "user", 
+      content: "اكتب خطة عمل مختصرة لشركة توصيل طرود في مسقط." 
+    }
+  ],
+});
+
+console.log(completion.choices[0].message.content);
+```
+
+```bash cURL
+curl https://mibyanai.com/api/public/v1/chat/completions \
+  -H "Authorization: Bearer mb-..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "mibyan-4.1",
+    "messages": [
+      {
+        "role": "user",
+        "content": "اكتب خطة عمل مختصرة لشركة توصيل طرود في مسقط."
+      }
+    ]
+  }'
+```
+
+</CodeGroup>

@@ -22,6 +22,12 @@
             ]
           },
           {
+            "group": "Core Model",
+            "pages": [
+              "models/mibyan-4-1"
+            ]
+          },
+          {
             "group": "Using Mibyan",
             "pages": [
               "features/artifacts",
