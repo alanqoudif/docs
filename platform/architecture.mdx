@@ -1,0 +1,62 @@
+---
+title: "معمارية المنصة"
+description: "كيف يعمل Atlas Swarm Core One من الواجهة إلى التوليد والتخزين"
+---
+
+## نظرة عامة
+
+`atlas-swarm-core-1` تطبيق TanStack Start مبني بـ React 19 وTanStack Router وVite. يعمل كواجهة ومخدم API في نفس المشروع، ويُنشر كـ Cloudflare Worker. يعتمد على Supabase للمصادقة والبيانات والتخزين، وعلى OpenRouter لتشغيل النماذج، وعلى Supabase Edge Functions لمسار العروض التقديمية.
+
+```text
+Browser
+  -> TanStack Start route /chat/$projectId
+  -> POST /api/public/agent-run (SSE)
+  -> Atlas classifier + tool loop
+  -> OpenRouter generation
+  -> Supabase conversations/messages/artifacts
+  -> ArtifactCanvas preview
+```
+
+## مكونات التشغيل
+
+<AccordionGroup>
+<Accordion title="الواجهة والتوجيه">
+ملفات الصفحات والـ API routes موجودة في `src/routes`. المسار الأساسي للمنتج هو `/chat/$projectId`، والتطبيق الجذري في `src/routes/__root.tsx`.
+</Accordion>
+
+<Accordion title="المصادقة">
+Supabase Auth هو الأساس. الخادم يتحقق من Bearer JWT عبر `src/server/requireAuth.server.ts`. يوجد أيضاً مسار phone OTP، ومسار desktop handoff للربط مع تطبيق سطح المكتب.
+</Accordion>
+
+<Accordion title="حلقة الوكيل">
+`/api/public/agent-run` يفتح stream أحداث. الوكيل يقرأ الرسائل والـ artifacts، يختار أداة من `src/server/agent-tools.server.ts`، ثم يرسل أحداث تقدم ونتيجة للواجهة.
+</Accordion>
+
+<Accordion title="التوليد">
+معظم التوليد يمر عبر OpenRouter. النموذج الافتراضي في أدوات الوكيل هو `google/gemini-3.1-flash-lite-preview`. توجد مسارات مستقلة للتوليد مثل `doc`, `html`, `sheet`, و`file-artifact`.
+</Accordion>
+
+<Accordion title="العروض التقديمية">
+سالم يستخدم مسارين: أداة `create_slides` داخل حلقة الوكيل، وخط إنتاج منفصل في Supabase Edge Function `generate-deck` ينتج أحداث SSE مثل `brief`, `identity`, `storyboard`, `slide_html`, و`ready`.
+</Accordion>
+</AccordionGroup>
+
+## بنية المشروع
+
+```text
+atlas-swarm-core-1/
+  src/routes/                 صفحات التطبيق ونقاط API
+  src/components/mubayyan/    واجهة المحادثة والـ artifacts
+  src/components/docs/        الوثائق العربية داخل التطبيق
+  src/server/                 أدوات الوكلاء، skills، parsers، generators
+  src/lib/                    عملاء الواجهة، email، stores، auth helpers
+  src/data/mubayyan.ts        تعريف الوكلاء وأنواع المخرجات
+  supabase/migrations/        الجداول والسياسات والدوال
+  supabase/functions/         generate-deck و export-deck-pptx
+```
+
+## حقيقة الميزات الحالية
+
+<Warning>
+التنفيذ الحالي يختار وكيلاً وأدوات بشكل تسلسلي داخل request واحد. واجهة Agent Swarm تعرض فكرة العمل الجماعي، لكن ليست كل الوعود التسويقية مثل تشغيل 100 وكيل مستقل بالتوازي أو ذاكرة عامة عبر كل المشاريع مكتملة في الخلفية.
+</Warning>

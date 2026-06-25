@@ -1,0 +1,55 @@
+---
+title: "وكلاء مبيان"
+description: "الفريق الاصطناعي في Atlas Swarm Core One ومتى يستخدم كل وكيل"
+---
+
+## كيف يختار مبيان الوكيل؟
+
+الواجهة ترسل رسالة المستخدم إلى `/api/public/agent-run`. أطلس يحلل النية، يقرأ سياق المحادثة والـ artifacts، ثم يختار أداة أو مسار توليد مناسب. في الكود تظهر الوكلاء في `src/data/mubayyan.ts`، وتظهر شخصيات التنفيذ داخل `agent-run.ts`.
+
+## الفريق
+
+<CardGroup cols={2}>
+<Card title="أطلس / master" icon="planet-ringed" href="/agents/atlas">
+المنسق الرئيسي. يفهم الطلب، يختار الوكيل أو الأداة، ويجمع النتائج.
+</Card>
+
+<Card title="سالم" icon="presentation" href="/agents/salem">
+متخصص العروض التقديمية وPitch Decks. لديه مسار deck pipeline منفصل.
+</Card>
+
+<Card title="سارة" icon="file-lines" href="/agents/specialists">
+مستندات، تقارير، خطط أعمال، دراسات جدوى، ملفات Word/PDF.
+</Card>
+
+<Card title="ناصر" icon="chart-line" href="/agents/specialists">
+استراتيجية، نموذج عمل، تسعير، Go-To-Market، وتحليل المنافسين.
+</Card>
+
+<Card title="ليلى" icon="palette" href="/agents/specialists">
+إبداع وتسويق، أسماء، شعارات نصية، حملات، محتوى منصات وهوية.
+</Card>
+
+<Card title="عمر" icon="list-checks" href="/agents/specialists">
+تشغيل وتنفيذ، roadmaps، SOPs، جداول زمنية، وتوزيع مهام.
+</Card>
+
+<Card title="ميرا" icon="chart-column" href="/agents/specialists">
+تحليل بيانات، KPIs، توقعات مالية، جداول ومقارنات.
+</Card>
+
+<Card title="كيمي كلو" icon="satellite" href="/agents/specialists">
+واجهة مراقبة 24/7 وتسويق لفكرة المتابعة والتنبيهات. الخلفية الحالية محدودة.
+</Card>
+</CardGroup>
+
+## أنماط المخرجات
+
+الوكلاء لا يملكون مخارج منعزلة بالكامل؛ هم يوجهون نفس أدوات المنصة:
+
+- مستندات Markdown عبر `create_doc`.
+- صفحات HTML عبر `create_html`.
+- جداول XLSX عبر `create_sheet`.
+- عروض JSON/Deck عبر `create_slides` أو `generate-deck`.
+- مواقع متعددة الصفحات عبر `create_website`.
+- تعديلات عبر `update_doc` و`update_html` بعد قراءة الـ Artifact الحالي.
