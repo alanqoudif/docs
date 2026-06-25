@@ -1,21 +1,21 @@
 ---
 title: "API Reference"
-description: "مرجع أولي لنقاط API المستخدمة داخل مبيان"
+description: "An initial reference for API endpoints used inside Mibyan"
 ---
 
 <Note>
-  الـ API العام للمطورين ما زال قيد التجهيز. هذا المرجع يوثق المسارات الموجودة فعلياً في `atlas-swarm-core-1/src/routes/api/public`.
+  The public developer API is still being prepared. This reference documents the routes that actually exist in `atlas-swarm-core-1/src/routes/api/public`.
 </Note>
 
 ## Base URL
 
-في الإنتاج استخدم دومين مبيان:
+In production, use the Mibyan domain:
 
 ```text
 https://mibyanai.com
 ```
 
-في التطوير المحلي استخدم Vite dev server:
+In local development, use the Vite dev server:
 
 ```text
 http://localhost:5173
@@ -23,32 +23,32 @@ http://localhost:5173
 
 ## Authentication
 
-معظم المسارات تتطلب Supabase access token:
+Most routes require a Supabase access token:
 
 ```http
 Authorization: Bearer <supabase_access_token>
 ```
 
-## أهم المسارات
+## Key routes
 
 <CardGroup cols={2}>
 <Card title="Agent run" icon="bolt" href="/developers/api-overview">
-`POST /api/public/agent-run` يشغل حلقة الوكيل ويبث SSE.
+`POST /api/public/agent-run` runs the agent loop and streams SSE.
 </Card>
 
 <Card title="Classifier" icon="route">
-`POST /api/public/classify` يصنف الطلب ويقترح الوكيل والأسئلة.
+`POST /api/public/classify` classifies the request and suggests the agent and questions.
 </Card>
 
 <Card title="Skills" icon="puzzle-piece">
-`GET/POST /api/public/skills` يعرض المهارات أو يختار skill مناسباً.
+`GET/POST /api/public/skills` lists skills or chooses a suitable skill.
 </Card>
 
 <Card title="AI models" icon="brain">
-`GET /api/public/ai/models` يعرض النماذج المسموحة لتكاملات AI proxy.
+`GET /api/public/ai/models` lists allowed models for AI proxy integrations.
 </Card>
 </CardGroup>
 
 ## OpenAPI
 
-ملف `api-reference/openapi.json` يحتوي مواصفة أولية لأهم المسارات. ليست كل مسارات التطبيق موثقة فيه بعد، لكنها لم تعد مواصفة Plant Store الافتراضية.
+The `api-reference/openapi.json` file contains an initial specification for the most important routes. Not every app route is documented there yet, but it is no longer the default Plant Store specification.

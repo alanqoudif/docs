@@ -1,63 +1,63 @@
 ---
-title: "التشغيل والنشر"
-description: "المتغيرات، Cloudflare، Supabase، ووظائف Edge"
+title: "Operations and Deployment"
+description: "Environment variables, Cloudflare, Supabase, and Edge Functions"
 ---
 
-## طبقات النشر
+## Deployment layers
 
-- تطبيق TanStack Start ينشر كـ Cloudflare Worker عبر `wrangler.jsonc`.
-- قاعدة البيانات والمصادقة والتخزين على Supabase.
-- وظائف `generate-deck` و`export-deck-pptx` تنشر كـ Supabase Edge Functions.
-- موقع الوثائق الخارجي ينشر عبر Mintlify من مجلد `docs`.
+- The TanStack Start app is deployed as a Cloudflare Worker through `wrangler.jsonc`.
+- Database, authentication, and storage run on Supabase.
+- The `generate-deck` and `export-deck-pptx` functions are deployed as Supabase Edge Functions.
+- The external docs site is deployed through Mintlify from the `docs` directory.
 
-## متغيرات البيئة
+## Environment variables
 
 <AccordionGroup>
 <Accordion title="Supabase">
-`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, و`SUPABASE_SERVICE_ROLE_KEY`. المفتاح الأخير سري جداً ولا يستخدم في الواجهة.
+`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, and `SUPABASE_SERVICE_ROLE_KEY`. The last key is highly sensitive and must not be used in the frontend.
 </Accordion>
 
 <Accordion title="AI">
-`OPENROUTER_API_KEY` مطلوب لمعظم مسارات التوليد والوكلاء. `LOVABLE_API_KEY` مستخدم في AI proxy والبريد وبعض مسارات التصدير.
+`OPENROUTER_API_KEY` is required for most generation and agent paths. `LOVABLE_API_KEY` is used in the AI proxy, email, and some export routes.
 </Accordion>
 
 <Accordion title="Skills">
-`SKILLS_ADMIN_TOKEN` يحمي مسار استيراد المهارات.
+`SKILLS_ADMIN_TOKEN` protects the skill import route.
 </Accordion>
 
 <Accordion title="Phone OTP">
-`AUTOMAPI_INSTANCE_ID` و`AUTOMAPI_ACCESS_TOKEN` لتفعيل إرسال OTP عبر SMS.
+`AUTOMAPI_INSTANCE_ID` and `AUTOMAPI_ACCESS_TOKEN` enable sending OTP codes over SMS.
 </Accordion>
 
 <Accordion title="Payments">
-`VITE_PAYMENTS_CLIENT_TOKEN` مستخدم للعميل حسب بيئة التطوير أو الإنتاج.
+`VITE_PAYMENTS_CLIENT_TOKEN` is used by the client depending on the development or production environment.
 </Accordion>
 </AccordionGroup>
 
 ## Supabase
 
-نفّذ migrations من `supabase/migrations`. عند نشر وظائف Edge، اضبط أسرارها بشكل منفصل عن أسرار Cloudflare، خصوصاً:
+Run migrations from `supabase/migrations`. When deploying Edge Functions, configure their secrets separately from Cloudflare secrets, especially:
 
 - `OPENROUTER_API_KEY`
 - `LOVABLE_API_KEY`
-- Supabase URL/keys المطلوبة للوظيفة
+- The Supabase URL/keys required by the function
 
 ## Cloudflare
 
-`wrangler.jsonc` يضبط Worker لتشغيل entry الخاص بـ TanStack Start، مع `nodejs_compat`. تأكد أن متغيرات الخادم السرية موجودة في بيئة Cloudflare وليست في ملفات عامة.
+`wrangler.jsonc` configures the Worker to run the TanStack Start entry with `nodejs_compat`. Make sure server-side secrets are present in the Cloudflare environment and not in public files.
 
-## مراقبة وتشخيص
+## Monitoring and diagnostics
 
-- PostHog مفعّل في الواجهة عبر `src/lib/posthog.tsx`.
-- سجلات AI يمكن قراءتها من `ai_usage_log`.
-- سجلات البريد في جداول email.
-- أي فشل في `/agent-run` يظهر كحدث `error` في SSE أو كـ HTTP status قبل بدء stream.
+- PostHog is enabled in the frontend through `src/lib/posthog.tsx`.
+- AI logs can be read from `ai_usage_log`.
+- Email logs live in the email tables.
+- Any `/agent-run` failure appears as an `error` SSE event or as an HTTP status before the stream starts.
 
-## قائمة قبل النشر
+## Pre-deploy checklist
 
 - `pnpm lint`
 - `pnpm build`
-- تحقق من Supabase migrations.
-- تحقق من أسرار Edge Functions.
-- جرّب إنشاء مستند، جدول، HTML، وعرض سالم.
-- جرّب تسجيل الدخول وOTP إذا كانت مفاتيحه مفعلة.
+- Verify Supabase migrations.
+- Verify Edge Function secrets.
+- Try creating a document, spreadsheet, HTML page, and Salem presentation.
+- Test sign-in and OTP if its keys are enabled.

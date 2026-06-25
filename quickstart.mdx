@@ -1,56 +1,56 @@
 ---
-title: "الشروع في استخدام مبيان"
-description: "من الحساب الأول إلى أول Artifact داخل مساحة العمل"
+title: "Getting Started with Mibyan"
+description: "From the first account to the first Artifact inside the workspace"
 ---
 
-## الفكرة المختصرة
+## The short version
 
-كل مشروع في مبيان هو محادثة لها معرف `projectId`. داخل المحادثة يكتب المستخدم طلبه، فيقرر أطلس أي وكيل أو أداة مناسبة، ثم يظهر الناتج كـ Artifact في لوحة المعاينة.
+Every Mibyan project is a conversation with a `projectId`. Inside the conversation, the user writes a request, Atlas decides which agent or tool fits best, and the result appears as an Artifact in the preview panel.
 
-## خطوات الاستخدام
+## Usage flow
 
 <Steps>
-<Step title="أنشئ حساباً أو سجل الدخول">
-يدعم التطبيق Supabase Auth، مع البريد وكلمة المرور، OAuth عبر Lovable Cloud Auth، ورقم الهاتف عبر OTP عند تفعيل مفاتيح AutomaAPI.
+<Step title="Create an account or sign in">
+The app supports Supabase Auth with email and password, OAuth through Lovable Cloud Auth, and phone-number OTP when the AutomaAPI keys are enabled.
 </Step>
 
-<Step title="ابدأ من الـ Composer">
-من الصفحة الرئيسية اكتب طلبك الأول، مثل: "اكتب لي pitch deck لشركة توصيل في عمان" أو "ابنِ صفحة هبوط عربية لخدمة عقارية".
+<Step title="Start from the Composer">
+From the home page, write your first request, such as: "Write a pitch deck for a delivery company in Oman" or "Build an Arabic landing page for a real estate service."
 </Step>
 
-<Step title="تابع الوكيل والنتيجة">
-تفتح المنصة `/chat/$projectId` وتبدأ أحداث SSE من `/api/public/agent-run`. سترى رسائل تقدم، استدعاءات أدوات، ثم Artifact في اللوحة الجانبية.
+<Step title="Follow the agent and result">
+The platform opens `/chat/$projectId` and starts SSE events from `/api/public/agent-run`. You will see progress messages, tool calls, and then an Artifact in the side panel.
 </Step>
 
-<Step title="عدّل أو صدّر">
-يمكنك طلب تعديل على نفس الناتج. أدوات التعديل تقرأ الـ Artifact الحالي ثم تنشئ نسخة جديدة، وتُحفظ الإصدارات في `artifact_versions`.
+<Step title="Edit or export">
+You can request changes to the same output. Editing tools read the current Artifact, create a new version, and save versions in `artifact_versions`.
 </Step>
 </Steps>
 
-## أمثلة طلبات جيدة
+## Good prompt examples
 
 <CardGroup cols={2}>
-<Card title="عرض تقديمي" icon="presentation">
-اكتب pitch deck عربي من 10 شرائح لتطبيق توصيل طرود في عمان، موجه للمستثمرين، مع مشكلة السوق، الحل، نموذج الدخل، وخطة 12 شهر.
+<Card title="Presentation" icon="presentation">
+Write a 10-slide Arabic pitch deck for a parcel delivery app in Oman, aimed at investors, with the market problem, solution, revenue model, and 12-month plan.
 </Card>
 
-<Card title="مستند" icon="file-lines">
-اكتب تقرير دراسة جدوى مفصل لمقهى مختص في مسقط، مع تكاليف تقديرية، تحليل منافسين، مخاطر، وخطة افتتاح.
+<Card title="Document" icon="file-lines">
+Write a detailed feasibility study for a specialty cafe in Muscat, with estimated costs, competitor analysis, risks, and an opening plan.
 </Card>
 
-<Card title="صفحة HTML" icon="browser">
-ابنِ صفحة هبوط RTL لخدمة استشارات قانونية، بألوان هادئة، أقسام خدمات وأسئلة شائعة ونموذج تواصل.
+<Card title="HTML page" icon="browser">
+Build an RTL landing page for a legal consulting service, with calm colors, service sections, FAQs, and a contact form.
 </Card>
 
-<Card title="جدول" icon="table">
-أنشئ جدول KPI شهري لفريق مبيعات B2B، 20 صفاً، مع أهداف، نتائج، نسبة تحقيق، وملاحظات تنفيذية.
+<Card title="Spreadsheet" icon="table">
+Create a monthly KPI sheet for a B2B sales team, 20 rows, with targets, results, achievement percentage, and executive notes.
 </Card>
 </CardGroup>
 
-## إعدادات المستخدم
+## User settings
 
-من `/settings` يستطيع المستخدم تعديل الاسم، الهاتف، والتفضيلات. حقل `profiles.preferences` يُستخدم لتخزين تعليمات مخصصة يمكن تمريرها لسياق الوكيل.
+From `/settings`, the user can edit their name, phone number, and preferences. The `profiles.preferences` field stores custom instructions that can be passed into the agent context.
 
 <Tip>
-لأفضل نتيجة، اذكر الجمهور، الصيغة المطلوبة، عدد الصفحات أو الشرائح، النبرة، وأي قيود تجارية أو محلية يجب احترامها.
+For best results, specify the audience, desired format, number of pages or slides, tone, and any business or local constraints that should be respected.
 </Tip>

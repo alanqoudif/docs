@@ -1,32 +1,32 @@
 ---
-title: "الذاكرة وAgent Swarm"
-description: "ما هو مفعل حالياً وما هو ضمن الرؤية القادمة"
+title: "Memory and Agent Swarm"
+description: "What is currently enabled and what belongs to the upcoming vision"
 ---
 
-## الذاكرة الحالية
+## Current memory
 
-سياق مبيان الحالي يعتمد على المحادثة، الرسائل، والـ artifacts المخزنة. هذا يعني أن الوكيل يستطيع التعامل مع ما أنشئ داخل المشروع الحالي، وقراءة Artifact موجود قبل تعديله.
+Mibyan's current context is based on the conversation, messages, and stored Artifacts. This means the agent can work with what was created inside the current project and read an existing Artifact before editing it.
 
-لا يوجد حالياً ضمان بأن كل محادثات المستخدم تُدمج في ذاكرة طويلة الأمد عامة تلقائياً لكل طلب. توجد واجهات ومكونات تتحدث عن الذاكرة، لكن يجب توثيقها كقدرة قيد التطوير إذا لم تكن مربوطة بخلفية كاملة.
+There is currently no guarantee that all of a user's conversations are automatically merged into a general long-term memory for every request. Some interfaces and components mention memory, but it should be documented as an in-development capability unless it is connected to a complete backend.
 
-## Agent Swarm الحالي
+## Current Agent Swarm
 
-المفهوم المنتج هو فريق وكلاء يعمل حول طلب واحد. التنفيذ الحالي أقرب إلى:
+The product concept is a team of agents working around a single request. The current implementation is closer to:
 
-- تحليل نية الطلب.
-- اختيار وكيل/شخصية مناسبة.
-- تشغيل أدوات محددة في حلقة تسلسلية.
-- عرض حالة عمل الوكلاء بصرياً.
+- Analyzing request intent.
+- Choosing a suitable agent or persona.
+- Running specific tools in a sequential loop.
+- Showing agent work status visually.
 
 <Info>
-هذا لا يعني أن كل طلب يشغل 100 وكيل مستقل فعلياً في الخلفية. عبارة "حتى 100 وكيل" تظهر في نصوص المنتج كطموح وتجربة مرئية أكثر من كونها عقد API ثابت.
+This does not mean every request actually runs 100 independent agents in the background. The phrase "up to 100 agents" appears in product copy as an ambition and visual experience more than as a fixed API contract.
 </Info>
 
-## كيف نوثقها للمستخدمين؟
+## How should this be documented for users?
 
-استخدم صياغة دقيقة:
+Use precise wording:
 
-- صحيح: "مبيان يوجّه الطلب للوكيل المناسب ويستخدم أدوات متعددة لإنشاء الناتج."
-- صحيح: "السياق الحالي يشمل المحادثة والمخرجات المرتبطة بها."
-- تجنب: "كل بياناتك محفوظة كذاكرة طويلة الأمد عبر جميع المشاريع" إلا بعد ربطها فعلياً.
-- تجنب: "100 وكيل يعملون بالتوازي دائماً" إلا إذا صار ذلك جزءاً من التنفيذ.
+- Correct: "Mibyan routes the request to the right agent and uses multiple tools to create the output."
+- Correct: "Current context includes the conversation and its related outputs."
+- Avoid: "All your data is saved as long-term memory across all projects" unless it has actually been wired up.
+- Avoid: "100 agents always work in parallel" unless that becomes part of the implementation.

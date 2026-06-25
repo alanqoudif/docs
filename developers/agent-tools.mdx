@@ -1,51 +1,51 @@
 ---
-title: "أدوات الوكلاء"
-description: "Tool schemas التي يستخدمها Atlas داخل /api/public/agent-run"
+title: "Agent Tools"
+description: "Tool schemas used by Atlas inside /api/public/agent-run"
 ---
 
-## المصدر
+## Source
 
-تعريف الأدوات وتنفيذها موجود في `atlas-swarm-core-1/src/server/agent-tools.server.ts`. كل أداة تعمل داخل سياق محدد بـ `userId` و`conversationId` وتستخدم Supabase admin client مع تحقق ملكية المحادثة في route الوكيل.
+Tool definitions and implementations live in `atlas-swarm-core-1/src/server/agent-tools.server.ts`. Each tool runs inside a context scoped by `userId` and `conversationId`, and uses the Supabase admin client together with conversation ownership checks in the agent route.
 
-## الأدوات
+## Tools
 
 <AccordionGroup>
 <Accordion title="create_doc">
-ينشئ مستند Markdown جديداً. مناسب للتقارير، الخطط، المقالات، العقود، ودراسات الجدوى. يقبل `title`, `prompt`, `audience`, `tone`, `length`, `length_words`, `target_sections`, `sections`, و`must_include`.
+Creates a new Markdown document. Suitable for reports, plans, articles, contracts, and feasibility studies. Accepts `title`, `prompt`, `audience`, `tone`, `length`, `length_words`, `target_sections`, `sections`, and `must_include`.
 </Accordion>
 
 <Accordion title="update_doc">
-يحدّث مستنداً موجوداً عبر `artifactId` و`instruction`. يجب قراءة أو تحديد الـ artifact الصحيح قبل التعديل.
+Updates an existing document through `artifactId` and `instruction`. The correct Artifact must be read or identified before editing.
 </Accordion>
 
 <Accordion title="create_html">
-ينشئ صفحة HTML كاملة تشمل `<!DOCTYPE html>`, CSS داخل `<style>`, وJS داخل `<script>`. مناسب لصفحات الهبوط والمواقع الصغيرة أحادية الصفحة.
+Creates a full HTML page that includes `<!DOCTYPE html>`, CSS inside `<style>`, and JS inside `<script>`. Suitable for landing pages and small single-page websites.
 </Accordion>
 
 <Accordion title="update_html">
-يعيد توليد HTML موجود بناءً على تعليمات تعديل.
+Regenerates existing HTML based on editing instructions.
 </Accordion>
 
 <Accordion title="create_sheet">
-ينشئ جدول بيانات. مناسب للميزانيات، KPIs، المقارنات، والقوائم. يقبل `columns` و`min_rows` عند الحاجة.
+Creates a spreadsheet. Suitable for budgets, KPIs, comparisons, and lists. Accepts `columns` and `min_rows` when needed.
 </Accordion>
 
 <Accordion title="create_slides">
-ينشئ عرضاً تقديمياً كبنية JSON. للعروض الأكثر تقدماً، راجع مسار `generate-deck`.
+Creates a presentation as a JSON structure. For more advanced decks, see the `generate-deck` path.
 </Accordion>
 
 <Accordion title="read_artifact">
-يقرأ محتوى Artifact موجود. استخدمه قبل تعديل ناتج سابق أو إنشاء ناتج جديد يعتمد عليه.
+Reads the content of an existing Artifact. Use it before editing a previous output or creating a new output that depends on it.
 </Accordion>
 
 <Accordion title="create_website">
-ينشئ موقعاً متعدد الصفحات وينشره تلقائياً على `/sites/{slug}`. يخزن الصفحات في `websites` و`website_pages`.
+Creates a multi-page website and automatically publishes it at `/sites/{slug}`. Stores pages in `websites` and `website_pages`.
 </Accordion>
 </AccordionGroup>
 
-## أحداث الأدوات
+## Tool events
 
-الأدوات ترجع أحداثاً إلى stream الوكيل:
+Tools return events to the agent stream:
 
 ```ts
 type ToolEvent =
@@ -54,10 +54,10 @@ type ToolEvent =
   | { type: "progress"; stage: string; current?: number; total?: number };
 ```
 
-## إضافة أداة جديدة
+## Add a new tool
 
-1. أضف schema جديداً إلى `TOOL_SCHEMAS`.
-2. أضف executor داخل `executeTool`.
-3. اجعل الأداة مربوطة دائماً بـ `userId` و`conversationId`.
-4. أرسل `tool_call`, `progress`, و`tool_result` حتى تبقى الواجهة متزامنة.
-5. حدّث هذه الصفحة ومرجع الـ API إذا أصبحت الأداة جزءاً من العقد العام.
+1. Add a new schema to `TOOL_SCHEMAS`.
+2. Add an executor inside `executeTool`.
+3. Always bind the tool to `userId` and `conversationId`.
+4. Emit `tool_call`, `progress`, and `tool_result` so the frontend stays synchronized.
+5. Update this page and the API reference if the tool becomes part of the public contract.

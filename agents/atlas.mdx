@@ -1,21 +1,21 @@
 ---
-title: "أطلس: المنسق الرئيسي"
-description: "دور Atlas / master في فهم الطلبات وتوجيه الأدوات"
+title: "Atlas: Main Coordinator"
+description: "The role of Atlas / master in understanding requests and routing tools"
 ---
 
-## من هو أطلس؟
+## Who is Atlas?
 
-أطلس هو الاسم المنتج للمنسق الرئيسي. في `src/data/mubayyan.ts` معرفه الداخلي هو `master` واسمه العربي في بعض الواجهات "ماستر". دوره ليس إنتاج كل شيء بنفسه، بل فهم الطلب وتوجيهه إلى الأداة أو الوكيل الأنسب.
+Atlas is the product name for the main coordinator. In `src/data/mubayyan.ts`, its internal ID is `master`, and some UI surfaces use the Arabic name "Master". Its role is not to produce everything by itself, but to understand the request and route it to the best tool or agent.
 
-## ماذا يفعل؟
+## What does it do?
 
-- يقرأ رسالة المستخدم وسياق المحادثة.
-- يقرر هل الطلب دردشة، مستند، عرض، موقع، صفحة HTML، أو جدول.
-- يستدعي أدوات مثل `create_doc`, `create_html`, `create_sheet`, أو `create_website`.
-- يرسل أحداث تقدم للواجهة عبر SSE.
-- يحفظ الناتج في `artifacts` ويعرضه في `ArtifactCanvas`.
+- Reads the user message and conversation context.
+- Decides whether the request is chat, a document, a presentation, a website, an HTML page, or a spreadsheet.
+- Calls tools such as `create_doc`, `create_html`, `create_sheet`, or `create_website`.
+- Sends progress events to the frontend over SSE.
+- Saves the output in `artifacts` and displays it in `ArtifactCanvas`.
 
-## دورة التنفيذ
+## Execution flow
 
 ```text
 user message
@@ -27,18 +27,18 @@ user message
   -> streamed result to UI
 ```
 
-## حدود التنفيذ الحالي
+## Current implementation limits
 
 <Info>
-أطلس يقود حلقة أدوات بحد أقصى لعدد من التكرارات داخل request واحد. عبارة "Agent Swarm حتى 100 وكيل" موجودة في بعض نصوص التسويق، لكنها لا تعني حالياً 100 عملية مستقلة متوازية في الخلفية لكل طلب.
+Atlas drives a bounded tool loop inside a single request. The phrase "Agent Swarm up to 100 agents" appears in some marketing copy, but it does not currently mean 100 independent parallel background processes for every request.
 </Info>
 
-## مثال
+## Example
 
-طلب مثل:
+A request like:
 
 ```text
-اكتب دراسة جدوى مفصلة لمقهى مختص في مسقط مع جدول تكاليف وخطة افتتاح.
+Write a detailed feasibility study for a specialty cafe in Muscat with a cost table and opening plan.
 ```
 
-قد يوجهه أطلس إلى سارة لإنشاء مستند، ويضيف تعليمات تخص ناصر للجانب الاستراتيجي وميرا للجداول. التنفيذ العملي يتم عبر `create_doc` وربما `create_sheet` إذا طلب المستخدم جدولاً منفصلاً.
+Atlas may route it to Sara to create a document, adding Nasser-style instructions for the strategic side and Mira-style instructions for tables. In practice, execution happens through `create_doc`, and possibly `create_sheet` if the user asks for a separate spreadsheet.

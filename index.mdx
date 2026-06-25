@@ -1,66 +1,66 @@
 ---
-title: "مبيان"
-description: "توثيق منصة مبيان، الوكلاء، الأدوات، الـ API، وتشغيل المشروع"
+title: "Mibyan"
+description: "Documentation for the Mibyan platform, agents, tools, API, and project operations"
 ---
 
-مبيان هو منصة عربية متعددة الوكلاء من Nuqta. في الكود الداخلي اسم المشروع هو `atlas-swarm-core-1`، وفي المنتج يظهر باسم مبيان، والمنسق الرئيسي يظهر تسويقياً باسم أطلس بينما يسمى في بعض الملفات `master`.
+Mibyan is Nuqta's Arabic-first multi-agent platform. Internally, the codebase is named `atlas-swarm-core-1`; in the product it appears as Mibyan, and the main coordinator is marketed as Atlas while some files still call it `master`.
 
-هذه الوثائق تشرح المنصة كما هي مبنية فعلياً: تطبيق TanStack Start يعمل على Cloudflare، يستخدم Supabase للمصادقة والبيانات، OpenRouter للتوليد، ووظائف Supabase Edge لخط إنتاج العروض.
+These docs describe the platform as it is actually built: a TanStack Start app deployed on Cloudflare, using Supabase for authentication and data, OpenRouter for generation, and Supabase Edge Functions for the deck production pipeline.
 
 <Card
-  title="ابدأ بسرعة"
+  title="Quickstart"
   icon="rocket"
   href="/quickstart"
   horizontal
 >
-  أنشئ حساباً، افتح محادثة، واطلب أول مستند أو عرض أو موقع.
+  Create an account, open a conversation, and request your first document, deck, or website.
 </Card>
 
-## ما الذي تفعله المنصة؟
+## What does the platform do?
 
-يستقبل مبيان طلب المستخدم في واجهة محادثة، يحلله، يختار الوكيل المناسب، ثم ينشئ Artifact قابل للعرض والتصدير. الأنواع الأساسية هي مستندات Markdown، صفحات HTML، جداول، عروض تقديمية، ومواقع متعددة الصفحات.
+Mibyan receives the user's request in a chat interface, analyzes it, chooses the right agent, and creates an Artifact that can be previewed and exported. The core output types are Markdown documents, HTML pages, spreadsheets, presentations, and multi-page websites.
 
 <Columns cols={2}>
   <Card
-    title="المعمارية"
+    title="Architecture"
     icon="code"
     href="/platform/architecture"
   >
-    Browser، Cloudflare Worker، Supabase، OpenRouter، وخط إنتاج العروض.
+    Browser, Cloudflare Worker, Supabase, OpenRouter, and the deck pipeline.
   </Card>
   <Card
-    title="الوكلاء"
+    title="Agents"
     icon="users"
     href="/agents/overview"
   >
-    أطلس، سالم، سارة، ناصر، ليلى، عمر، ميرا، وكيمي كلو.
+    Atlas, Salem, Sara, Nasser, Layla, Omar, Mira, and Kimi Claw.
   </Card>
   <Card
     title="Artifacts"
     icon="box"
     href="/features/artifacts"
   >
-    كيف تُنشأ المخرجات، تُحفظ، تُعرض، وتُحدّث داخل المشروع.
+    How outputs are created, saved, previewed, and updated inside a project.
   </Card>
   <Card
     title="API"
     icon="terminal"
     href="/api-reference/introduction"
   >
-    مرجع أولي للـ API الداخلي والـ SSE المستخدم في التطبيق.
+    An initial reference for the internal API and SSE used by the app.
   </Card>
 </Columns>
 
-## مصادر الحقيقة
+## Sources of truth
 
-اعتمدت هذه الوثائق على ملفات التطبيق نفسها:
+These docs were derived from the app files themselves:
 
-- `atlas-swarm-core-1/src/data/mubayyan.ts` لتعريف الوكلاء.
-- `atlas-swarm-core-1/src/server/agent-tools.server.ts` لأدوات الوكلاء.
-- `atlas-swarm-core-1/src/routes/api/public/*` لنقاط الـ API.
-- `atlas-swarm-core-1/supabase/migrations/*` و `src/integrations/supabase/types.ts` للبيانات.
-- `atlas-swarm-core-1/src/components/docs/*` للوثائق العربية داخل التطبيق.
+- `atlas-swarm-core-1/src/data/mubayyan.ts` for agent definitions.
+- `atlas-swarm-core-1/src/server/agent-tools.server.ts` for agent tools.
+- `atlas-swarm-core-1/src/routes/api/public/*` for API endpoints.
+- `atlas-swarm-core-1/supabase/migrations/*` and `src/integrations/supabase/types.ts` for data.
+- `atlas-swarm-core-1/src/components/docs/*` for the Arabic in-app documentation.
 
 <Warning>
-بعض صفحات التسويق داخل التطبيق تتحدث عن ميزات أوسع من التنفيذ الحالي، مثل الذاكرة طويلة الأمد العامة أو تشغيل 100 وكيل فعلياً بالتوازي. هذه الوثائق تفرّق بين الموجود الآن وخارطة الطريق.
+Some in-app marketing pages describe capabilities broader than the current implementation, such as general long-term memory or actually running 100 agents in parallel. These docs distinguish what exists now from the roadmap.
 </Warning>

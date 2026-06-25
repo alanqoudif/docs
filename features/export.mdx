@@ -1,41 +1,41 @@
 ---
-title: "التصدير"
-description: "DOCX وPPTX وXLSX ومسارات التصدير في مبيان"
+title: "Export"
+description: "DOCX, PPTX, XLSX, and export routes in Mibyan"
 ---
 
-## نظرة عامة
+## Overview
 
-التصدير في مبيان موزع على أكثر من مسار، لأن كل نوع Artifact له احتياج مختلف. المستندات والجداول والعروض لا تمر كلها عبر نفس الكود.
+Export in Mibyan is split across multiple paths because each Artifact type has different requirements. Documents, spreadsheets, and presentations do not all use the same code.
 
-## المسارات
+## Paths
 
 <AccordionGroup>
 <Accordion title="DOCX">
-المستندات تبدأ عادة كـ Markdown. مسارات مثل `file-artifact` و`restyle-docx` تتعامل مع تحويل أو تنسيق ملفات Office. قوالب البريد والمستندات تعتمد على مكتبات مثل `docx`.
+Documents usually start as Markdown. Routes such as `file-artifact` and `restyle-docx` handle Office file conversion or formatting. Email and document templates rely on libraries such as `docx`.
 </Accordion>
 
 <Accordion title="XLSX">
-الجداول تُنشأ كبيانات منظمة عبر `create_sheet`، ثم يمكن تصديرها باستخدام SheetJS `xlsx`.
+Spreadsheets are created as structured data through `create_sheet`, then can be exported using SheetJS `xlsx`.
 </Accordion>
 
 <Accordion title="PPTX">
-العروض تستخدم أكثر من مسار: `create_slides` لإنتاج بنية العرض، `generate-deck` لإنشاء deck أغنى، و`export-deck-pptx` للتصدير. يوجد أيضاً اعتماد على `pptxgenjs`.
+Presentations use more than one path: `create_slides` to produce the presentation structure, `generate-deck` to create a richer deck, and `export-deck-pptx` for export. There is also a dependency on `pptxgenjs`.
 </Accordion>
 
 <Accordion title="HTML / Website">
-صفحات HTML تُعرض مباشرة داخل preview، والمواقع متعددة الصفحات تُنشر عبر مسار `/sites/{slug}`.
+HTML pages are previewed directly, and multi-page websites are published through the `/sites/{slug}` route.
 </Accordion>
 </AccordionGroup>
 
-## حدود مهمة
+## Important limits
 
 <Warning>
-مطابقة المعاينة البصرية HTML مع ملف PPTX النهائي ليست مضمونة 100% حالياً. الخطة الداخلية في `.lovable/plan.md` تشير إلى عمل مستقبلي لتحسين snapshot export والـ presets.
+Matching the visual HTML preview to the final PPTX file is not currently guaranteed 100%. The internal plan in `.lovable/plan.md` points to future work on snapshot export and presets.
 </Warning>
 
-## نصائح للمستخدم
+## User tips
 
-- اطلب الصيغة صراحة: DOCX، PPTX، XLSX، HTML، أو موقع متعدد الصفحات.
-- للعروض، حدد عدد الشرائح ونوع الجمهور.
-- للمستندات الطويلة، حدد عدد الكلمات أو الصفحات والأقسام المطلوبة.
-- للجداول، حدد الأعمدة وعدد الصفوف إن كان مهماً.
+- Ask for the format explicitly: DOCX, PPTX, XLSX, HTML, or a multi-page website.
+- For presentations, specify the number of slides and audience type.
+- For long documents, specify the word or page count and required sections.
+- For spreadsheets, specify the columns and row count if they matter.

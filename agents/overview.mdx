@@ -1,55 +1,55 @@
 ---
-title: "وكلاء مبيان"
-description: "الفريق الاصطناعي في Atlas Swarm Core One ومتى يستخدم كل وكيل"
+title: "Mibyan Agents"
+description: "The AI team in Atlas Swarm Core One and when each agent is used"
 ---
 
-## كيف يختار مبيان الوكيل؟
+## How does Mibyan choose an agent?
 
-الواجهة ترسل رسالة المستخدم إلى `/api/public/agent-run`. أطلس يحلل النية، يقرأ سياق المحادثة والـ artifacts، ثم يختار أداة أو مسار توليد مناسب. في الكود تظهر الوكلاء في `src/data/mubayyan.ts`، وتظهر شخصيات التنفيذ داخل `agent-run.ts`.
+The frontend sends the user's message to `/api/public/agent-run`. Atlas analyzes the intent, reads the conversation and Artifact context, then chooses the appropriate tool or generation path. In the code, agents are defined in `src/data/mubayyan.ts`, while execution personas appear inside `agent-run.ts`.
 
-## الفريق
+## The team
 
 <CardGroup cols={2}>
-<Card title="أطلس / master" icon="globe" href="/agents/atlas">
-المنسق الرئيسي. يفهم الطلب، يختار الوكيل أو الأداة، ويجمع النتائج.
+<Card title="Atlas / master" icon="globe" href="/agents/atlas">
+The main coordinator. It understands the request, chooses the agent or tool, and combines the results.
 </Card>
 
-<Card title="سالم" icon="presentation" href="/agents/salem">
-متخصص العروض التقديمية وPitch Decks. لديه مسار deck pipeline منفصل.
+<Card title="Salem" icon="presentation" href="/agents/salem">
+The presentation and pitch deck specialist. It has a separate deck pipeline.
 </Card>
 
-<Card title="سارة" icon="file-lines" href="/agents/specialists">
-مستندات، تقارير، خطط أعمال، دراسات جدوى، ملفات Word/PDF.
+<Card title="Sara" icon="file-lines" href="/agents/specialists">
+Documents, reports, business plans, feasibility studies, and Word/PDF files.
 </Card>
 
-<Card title="ناصر" icon="chart-line" href="/agents/specialists">
-استراتيجية، نموذج عمل، تسعير، Go-To-Market، وتحليل المنافسين.
+<Card title="Nasser" icon="chart-line" href="/agents/specialists">
+Strategy, business models, pricing, go-to-market, and competitor analysis.
 </Card>
 
-<Card title="ليلى" icon="palette" href="/agents/specialists">
-إبداع وتسويق، أسماء، شعارات نصية، حملات، محتوى منصات وهوية.
+<Card title="Layla" icon="palette" href="/agents/specialists">
+Creative and marketing work, names, taglines, campaigns, social content, and identity.
 </Card>
 
-<Card title="عمر" icon="list-check" href="/agents/specialists">
-تشغيل وتنفيذ، roadmaps، SOPs، جداول زمنية، وتوزيع مهام.
+<Card title="Omar" icon="list-check" href="/agents/specialists">
+Operations and execution, roadmaps, SOPs, timelines, and task distribution.
 </Card>
 
-<Card title="ميرا" icon="chart-column" href="/agents/specialists">
-تحليل بيانات، KPIs، توقعات مالية، جداول ومقارنات.
+<Card title="Mira" icon="chart-column" href="/agents/specialists">
+Data analysis, KPIs, financial forecasts, spreadsheets, and comparisons.
 </Card>
 
-<Card title="كيمي كلو" icon="satellite" href="/agents/specialists">
-واجهة مراقبة 24/7 وتسويق لفكرة المتابعة والتنبيهات. الخلفية الحالية محدودة.
+<Card title="Kimi Claw" icon="satellite" href="/agents/specialists">
+A 24/7 monitoring interface and product story for follow-up and alerts. The current backend is limited.
 </Card>
 </CardGroup>
 
-## أنماط المخرجات
+## Output patterns
 
-الوكلاء لا يملكون مخارج منعزلة بالكامل؛ هم يوجهون نفس أدوات المنصة:
+Agents do not have fully separate output systems; they route work through the same platform tools:
 
-- مستندات Markdown عبر `create_doc`.
-- صفحات HTML عبر `create_html`.
-- جداول XLSX عبر `create_sheet`.
-- عروض JSON/Deck عبر `create_slides` أو `generate-deck`.
-- مواقع متعددة الصفحات عبر `create_website`.
-- تعديلات عبر `update_doc` و`update_html` بعد قراءة الـ Artifact الحالي.
+- Markdown documents through `create_doc`.
+- HTML pages through `create_html`.
+- XLSX spreadsheets through `create_sheet`.
+- JSON/deck presentations through `create_slides` or `generate-deck`.
+- Multi-page websites through `create_website`.
+- Edits through `update_doc` and `update_html` after reading the current Artifact.

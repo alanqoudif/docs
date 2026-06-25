@@ -1,20 +1,20 @@
 ---
-title: "التطوير المحلي"
-description: "تشغيل docs وتطبيق atlas-swarm-core-1 محلياً"
+title: "Local Development"
+description: "Run the docs and the atlas-swarm-core-1 app locally"
 ---
 
-## تشغيل موقع الوثائق
+## Run the docs site
 
-مجلد `docs` هو موقع Mintlify الخارجي. شغّله من جذر هذا المجلد:
+The `docs` directory is the external Mintlify site. Run it from the root of this directory:
 
 ```bash
 npm i -g mint
 mint dev
 ```
 
-## تشغيل التطبيق
+## Run the app
 
-التطبيق الفعلي موجود في `atlas-swarm-core-1`.
+The actual application lives in `atlas-swarm-core-1`.
 
 ```bash
 cd atlas-swarm-core-1
@@ -22,35 +22,35 @@ pnpm install
 pnpm dev
 ```
 
-الأوامر الموجودة في `package.json`:
+Commands available in `package.json`:
 
-- `pnpm dev`: تشغيل Vite dev server.
-- `pnpm build`: بناء الإنتاج.
-- `pnpm build:dev`: بناء بوضع development.
-- `pnpm preview`: معاينة build.
+- `pnpm dev`: run the Vite dev server.
+- `pnpm build`: build for production.
+- `pnpm build:dev`: build in development mode.
+- `pnpm preview`: preview the build.
 - `pnpm lint`: ESLint.
 - `pnpm format`: Prettier.
 
-## المتطلبات
+## Requirements
 
-- Node حديث متوافق مع Vite 7.
+- A recent Node version compatible with Vite 7.
 - pnpm.
-- Supabase project مع الجداول والمفاتيح.
-- OpenRouter API key لتشغيل الوكلاء.
-- Lovable API key لبعض مسارات AI/email/export.
+- A Supabase project with the required tables and keys.
+- An OpenRouter API key for running agents.
+- A Lovable API key for some AI, email, and export routes.
 
-## ملفات مهمة
+## Important files
 
-- `vite.config.ts`: إعداد TanStack Start وCloudflare/Vite.
-- `wrangler.jsonc`: نشر Cloudflare Worker.
-- `supabase/config.toml`: إعداد Supabase المحلي/المشروع.
-- `supabase/migrations`: قاعدة البيانات.
-- `supabase/functions`: وظائف deck/export.
+- `vite.config.ts`: TanStack Start and Cloudflare/Vite setup.
+- `wrangler.jsonc`: Cloudflare Worker deployment.
+- `supabase/config.toml`: local/project Supabase configuration.
+- `supabase/migrations`: database migrations.
+- `supabase/functions`: deck/export functions.
 - `src/routes/api/public`: API routes.
 
-## تحقق سريع
+## Quick check
 
-بعد ضبط المتغيرات:
+After configuring environment variables:
 
 ```bash
 pnpm lint
@@ -58,5 +58,5 @@ pnpm build
 ```
 
 <Note>
-لا تلتزم أي مفاتيح سرية مثل `SUPABASE_SERVICE_ROLE_KEY` أو `OPENROUTER_API_KEY`. ملف `.env` الموجود يجب مراجعته دائماً قبل أي commit.
+Do not commit secrets such as `SUPABASE_SERVICE_ROLE_KEY` or `OPENROUTER_API_KEY`. Always review any `.env` file before committing.
 </Note>

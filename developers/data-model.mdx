@@ -1,40 +1,40 @@
 ---
-title: "نموذج البيانات"
-description: "الجداول الأساسية في Supabase وما تخزنه"
+title: "Data Model"
+description: "The core Supabase tables and what they store"
 ---
 
-## المصدر
+## Source
 
-المصدر العملي هو migrations داخل `atlas-swarm-core-1/supabase/migrations` والأنواع المولدة في `src/integrations/supabase/types.ts`.
+The practical source is the migrations inside `atlas-swarm-core-1/supabase/migrations` and the generated types in `src/integrations/supabase/types.ts`.
 
-## جداول المنتج
+## Product tables
 
-- `profiles`: بيانات المستخدم والتفضيلات مثل `custom_instructions`.
-- `conversations`: مشاريع المستخدم، وهي ما يظهر في المسار `/chat/$projectId`.
-- `messages`: رسائل المستخدم والمساعد داخل كل محادثة.
-- `artifacts`: المخرجات الحالية المرتبطة بمحادثة.
-- `artifact_versions`: إصدارات المخرجات بعد الإنشاء والتعديل.
-- `websites`: مواقع متعددة الصفحات منشأة عبر `create_website`.
-- `website_pages`: صفحات المواقع المنشورة على `/sites/{slug}`.
-- `presentations`: بيانات العروض التقديمية.
-- `skills`: تعليمات قابلة للحقن في سياق الدردشة والتصنيف.
-- `ai_usage_log`: تتبع استخدام نماذج الذكاء الاصطناعي والتكلفة.
+- `profiles`: user data and preferences such as `custom_instructions`.
+- `conversations`: user projects, which appear in the `/chat/$projectId` route.
+- `messages`: user and assistant messages inside each conversation.
+- `artifacts`: current outputs linked to a conversation.
+- `artifact_versions`: output versions after creation and editing.
+- `websites`: multi-page websites created through `create_website`.
+- `website_pages`: website pages published at `/sites/{slug}`.
+- `presentations`: presentation data.
+- `skills`: instructions that can be injected into chat and classification context.
+- `ai_usage_log`: AI model usage and cost tracking.
 
-## جداول المصادقة والمساعدة
+## Auth and helper tables
 
-- `phone_otps`: رموز OTP للهاتف.
-- `desktop_handoff_codes`: أكواد قصيرة لربط تطبيق سطح المكتب، مع TTL قصير.
-- `affiliate_interest`: اهتمام الشركاء أو الافلييت.
+- `phone_otps`: phone OTP codes.
+- `desktop_handoff_codes`: short-lived codes for linking the desktop app.
+- `affiliate_interest`: partner or affiliate interest.
 
-## جداول البريد
+## Email tables
 
 - `email_send_log`
 - `email_send_state`
 - `email_unsubscribe_tokens`
 - `suppressed_emails`
 
-توجد أيضاً RPCs للبريد مثل enqueue/read batch حسب migrations.
+There are also email RPCs such as enqueue/read batch, depending on the migrations.
 
-## ملاحظات أمنية
+## Security notes
 
-كل API يغيّر بيانات المستخدم يجب أن يتحقق من Bearer JWT عبر `requireAuth`، ثم يتحقق من ملكية المورد، خصوصاً `conversationId` و`artifactId`. أدوات الوكيل تستخدم admin client، لذلك شرط التقييد بالـ user والمحادثة جوهري وليس اختيارياً.
+Every API that changes user data must verify the Bearer JWT through `requireAuth`, then verify resource ownership, especially for `conversationId` and `artifactId`. Agent tools use the admin client, so scoping by user and conversation is essential, not optional.

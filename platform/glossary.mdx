@@ -1,41 +1,41 @@
 ---
-title: "المصطلحات والأسماء"
-description: "كيف ترتبط Mibyan وAtlas وMaster وatlas-swarm-core-1 ببعضها"
+title: "Terms and Naming"
+description: "How Mibyan, Atlas, Master, and atlas-swarm-core-1 relate to each other"
 ---
 
-## الأسماء الأساسية
+## Core names
 
 <CardGroup cols={2}>
-<Card title="Mibyan / مبيان" icon="sparkles">
-اسم المنتج الظاهر للمستخدمين. الدومين الإنتاجي المستخدم في النصوص هو `mibyanai.com`.
+<Card title="Mibyan" icon="sparkles">
+The user-facing product name. The production domain used in copy is `mibyanai.com`.
 </Card>
 
 <Card title="Atlas Swarm Core One" icon="code-branch">
-اسم المنصة داخلياً في هذا التوثيق. المجلد الفعلي في المستودع هو `atlas-swarm-core-1`.
+The internal platform name used in these docs. The actual repository directory is `atlas-swarm-core-1`.
 </Card>
 
-<Card title="Atlas / أطلس" icon="globe">
-اسم المنسق الرئيسي في الوثائق والتسويق. يستقبل الطلب ويفهمه ويختار المسار المناسب.
+<Card title="Atlas" icon="globe">
+The main coordinator name used in docs and marketing. It receives the request, understands it, and chooses the right path.
 </Card>
 
 <Card title="master" icon="gear">
-المعرف الداخلي للمنسق الرئيسي في الكود، خصوصاً في `src/data/mubayyan.ts`. عند قراءة الكود اعتبر `master` هو أطلس.
+The internal ID for the main coordinator in code, especially in `src/data/mubayyan.ts`. When reading the code, treat `master` as Atlas.
 </Card>
 </CardGroup>
 
-## قاعدة التسمية في الوثائق
+## Documentation naming rule
 
-نستخدم "مبيان" عند الحديث عن المنتج، و"Atlas Swarm Core One" عند الحديث عن المنصة أو المستودع، و"أطلس" عند الحديث عن الوكيل المنسق. إذا ظهر `master` في API أو قاعدة البيانات أو الكود، فهو الاسم البرمجي لأطلس وليس وكيلاً إضافياً.
+Use "Mibyan" when discussing the product, "Atlas Swarm Core One" when discussing the platform or repository, and "Atlas" when discussing the coordinating agent. If `master` appears in the API, database, or code, it is Atlas's programmatic name, not an additional agent.
 
-## مصطلحات المنتج
+## Product terms
 
-- `projectId`: معرف المحادثة أو مساحة العمل الحالية. يظهر في المسار `/chat/$projectId`.
-- Artifact: المخرج القابل للعرض أو التعديل، مثل مستند، صفحة HTML، جدول، عرض، أو موقع.
-- Agent run: دورة تنفيذ الوكيل عبر `/api/public/agent-run`، وتشمل اختيار الأداة، تشغيلها، وإرسال الأحداث للواجهة.
-- Tool call: استدعاء دالة داخل حلقة الوكيل مثل `create_doc` أو `create_website`.
-- Skill: تعليمات قابلة للحقن في سياق الدردشة، مخزنة في جدول `skills` ويمكن استيرادها عبر API.
-- Edge function: وظيفة Supabase منفصلة عن تطبيق TanStack، مثل `generate-deck` و`export-deck-pptx`.
+- `projectId`: the current conversation or workspace ID. It appears in the `/chat/$projectId` route.
+- Artifact: a previewable or editable output, such as a document, HTML page, spreadsheet, presentation, or website.
+- Agent run: an agent execution cycle through `/api/public/agent-run`, including tool selection, tool execution, and events sent to the frontend.
+- Tool call: a function call inside the agent loop, such as `create_doc` or `create_website`.
+- Skill: instructions that can be injected into chat context, stored in the `skills` table and importable through the API.
+- Edge function: a Supabase function separate from the TanStack app, such as `generate-deck` and `export-deck-pptx`.
 
 <Note>
-هذه الصفحة مهمة عند مراجعة الكود أو كتابة API docs، لأن بعض أسماء التسويق أوسع من أسماء التنفيذ.
+This page matters when reviewing code or writing API docs because some marketing names are broader than the implementation names.
 </Note>

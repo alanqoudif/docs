@@ -14,7 +14,7 @@
         "tab": "Guides",
         "groups": [
           {
-            "group": "ابدأ هنا",
+            "group": "Start Here",
             "pages": [
               "index",
               "quickstart",
@@ -22,7 +22,7 @@
             ]
           },
           {
-            "group": "المنصة",
+            "group": "Platform",
             "pages": [
               "platform/architecture",
               "features/artifacts",
@@ -31,7 +31,7 @@
             ]
           },
           {
-            "group": "الوكلاء",
+            "group": "Agents",
             "pages": [
               "agents/overview",
               "agents/atlas",
@@ -40,7 +40,7 @@
             ]
           },
           {
-            "group": "التطوير والتشغيل",
+            "group": "Development and Operations",
             "pages": [
               "development",
               "developers/agent-tools",

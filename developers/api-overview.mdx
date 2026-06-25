@@ -1,40 +1,40 @@
 ---
 title: "API Overview"
-description: "نقاط API الحقيقية في Atlas Swarm Core One"
+description: "The real API endpoints in Atlas Swarm Core One"
 ---
 
-## الحالة العامة
+## General status
 
-يوجد API داخلي فعلي يستخدمه تطبيق مبيان، لكنه ليس SDK عاماً مستقراً بعد. صفحة `/api-docs` داخل التطبيق تعرض انتظاراً للـ API العام. لذلك اعتبر هذه الصفحة مرجعاً للمطورين الداخليين أو التكاملات المصرّح بها.
+Mibyan has a real internal API used by the app, but it is not yet a stable public SDK. The `/api-docs` page inside the app still shows that the public API is coming soon. Treat this page as a reference for internal developers or approved integrations.
 
-## المصادقة
+## Authentication
 
-معظم المسارات تستخدم:
+Most routes use:
 
 ```http
 Authorization: Bearer <supabase_access_token>
 Content-Type: application/json
 ```
 
-المسارات التي تخدم تطبيقات خارجية مثل `/api/public/ai/models` تضيف CORS، لكن هذا لا يعني أن كل المسارات عامة بدون مصادقة.
+Routes that serve external applications, such as `/api/public/ai/models`, add CORS, but that does not mean every route is public without authentication.
 
 ## Core agent API
 
 ### `POST /api/public/agent-run`
 
-يشغل حلقة الوكيل ويبث Server-Sent Events.
+Runs the agent loop and streams Server-Sent Events.
 
 Request:
 
 ```json
 {
   "conversationId": "uuid",
-  "userMessage": "اكتب تقريراً...",
+  "userMessage": "Write a report...",
   "excludeTools": ["create_slides"]
 }
 ```
 
-أحداث stream الأساسية:
+Core stream events:
 
 - `agent_assigned`
 - `requirements`
@@ -48,11 +48,11 @@ Request:
 
 ### `POST /api/public/classify`
 
-يصنف النص إلى `chat` أو `task`، ويقترح وكيل وأسئلة توضيحية.
+Classifies text as `chat` or `task`, and suggests an agent and clarification questions.
 
 ```json
 {
-  "text": "اصنع عرضاً تقديمياً لشركة ناشئة"
+  "text": "Create a startup pitch deck"
 }
 ```
 
@@ -62,14 +62,14 @@ Response:
 {
   "kind": "task",
   "agent": "salem",
-  "title": "عرض شركة ناشئة",
+  "title": "Startup pitch deck",
   "questions": []
 }
 ```
 
 ## Generation endpoints
 
-المشروع يحتوي مسارات مستقلة للتوليد، منها:
+The project includes independent generation routes, including:
 
 - `POST /api/public/doc`
 - `POST /api/public/html`
@@ -77,25 +77,25 @@ Response:
 - `POST /api/public/file-artifact`
 - `POST /api/public/restyle-docx`
 
-استخدم `/agent-run` كالمسار الأساسي لتجربة المنتج، واستخدم هذه المسارات عندما تحتاج توليداً متخصصاً خارج حلقة الوكيل.
+Use `/agent-run` as the main path for the product experience, and use these routes when you need specialized generation outside the agent loop.
 
 ## Skills API
 
-- `GET /api/public/skills`: يعرض المهارات المفعلة.
-- `POST /api/public/skills`: يختار skill مناسباً لنص معين.
-- `POST /api/public/skills/import`: استيراد إداري محمي بـ `SKILLS_ADMIN_TOKEN`.
+- `GET /api/public/skills`: lists enabled skills.
+- `POST /api/public/skills`: chooses a suitable skill for a given text.
+- `POST /api/public/skills/import`: admin import protected by `SKILLS_ADMIN_TOKEN`.
 
 ## Desktop and AI proxy
 
-- `GET /api/public/ai/models`: يعرض قائمة النماذج المسموح بها.
-- `POST /api/public/ai/chat`: proxy إلى Lovable AI gateway.
-- `POST /api/public/ai/openrouter/chat`: proxy إلى OpenRouter.
-- `GET /api/public/ai/usage`: استخدام وتكلفة من `ai_usage_log`.
-- `POST /api/public/desktop-handoff/redeem`: استبدال كود ربط سطح المكتب.
+- `GET /api/public/ai/models`: lists the allowed models.
+- `POST /api/public/ai/chat`: proxy to the Lovable AI gateway.
+- `POST /api/public/ai/openrouter/chat`: proxy to OpenRouter.
+- `GET /api/public/ai/usage`: usage and cost from `ai_usage_log`.
+- `POST /api/public/desktop-handoff/redeem`: redeems a desktop linking code.
 
 ## Edge functions
 
-- `generate-deck`: خط إنتاج العروض، يبث أحداثاً متعددة.
-- `export-deck-pptx`: تصدير PPTX.
+- `generate-deck`: the deck production pipeline, streaming multiple events.
+- `export-deck-pptx`: PPTX export.
 
-هذه ليست TanStack routes؛ تنشر وتضبط أسرارها عبر Supabase Edge Functions.
+These are not TanStack routes; they are deployed and configured with secrets through Supabase Edge Functions.

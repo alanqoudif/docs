@@ -1,42 +1,42 @@
 ---
-title: "سالم: العروض التقديمية"
-description: "كيف ينتج مبيان Pitch Decks وعروض PPTX"
+title: "Salem: Presentations"
+description: "How Mibyan produces pitch decks and PPTX presentations"
 ---
 
-## دور سالم
+## Salem's role
 
-سالم متخصص العروض التقديمية. يستخدم في طلبات مثل Pitch Decks، عروض المستثمرين، عروض الشركات، وتسلسل القصة البصرية.
+Salem is the presentation specialist. It is used for requests such as pitch decks, investor presentations, company decks, and visual storytelling sequences.
 
-## المساران الموجودان
+## Available paths
 
 <AccordionGroup>
-<Accordion title="مسار agent-run">
-داخل حلقة الوكيل توجد أداة `create_slides`. هذه الأداة تنتج بنية JSON للعرض: عنوان، شرائح، نقاط، وملاحظات. هذا المسار سريع ومناسب للمعاينة والتحرير داخل المحادثة.
+<Accordion title="agent-run path">
+Inside the agent loop, the `create_slides` tool produces a JSON presentation structure: title, slides, bullet points, and notes. This path is fast and suitable for previewing and editing inside the conversation.
 </Accordion>
 
-<Accordion title="مسار generate-deck">
-وظيفة Supabase Edge `generate-deck` هي خط إنتاج أوسع. تبث أحداثاً مثل `status`, `brief`, `identity`, `storyboard`, `slide_html`, `ready`, و`error`. هذا المسار أقرب لإنتاج عرض كامل مع هوية وقصة وHTML للشرائح.
+<Accordion title="generate-deck path">
+The Supabase Edge Function `generate-deck` is a broader production pipeline. It streams events such as `status`, `brief`, `identity`, `storyboard`, `slide_html`, `ready`, and `error`. This path is closer to producing a full deck with identity, story, and slide HTML.
 </Accordion>
 
-<Accordion title="تصدير PPTX">
-توجد وظيفة `export-deck-pptx` ومسارات أخرى داخل `file-artifact`. الخطة الداخلية تشير إلى أن مطابقة HTML preview مع PPTX export ما زالت منطقة تحسين.
+<Accordion title="PPTX export">
+The `export-deck-pptx` function exists, along with other routes inside `file-artifact`. The internal plan notes that matching the HTML preview to PPTX export is still an improvement area.
 </Accordion>
 </AccordionGroup>
 
-## أفضل Prompt لسالم
+## Best prompt for Salem
 
-اكتب الطلب مع:
+Write the request with:
 
-- الجمهور: مستثمرون، إدارة، عملاء، فريق داخلي.
-- عدد الشرائح.
-- هدف العرض.
-- الأسلوب البصري أو البراند.
-- الأقسام المطلوبة مثل المشكلة، الحل، السوق، النموذج المالي، الفريق، والخطة.
+- Audience: investors, management, customers, or an internal team.
+- Number of slides.
+- Goal of the presentation.
+- Visual style or brand direction.
+- Required sections, such as problem, solution, market, financial model, team, and plan.
 
 ```text
-اصنع Pitch Deck عربي من 12 شريحة لشركة SaaS عقارية في السعودية، موجه لمستثمرين seed، بأسلوب فاخر وبسيط، مع traction وfinancial model وask واضح.
+Create a 12-slide Arabic pitch deck for a real estate SaaS company in Saudi Arabia, aimed at seed investors, with a premium minimal style, traction, financial model, and a clear ask.
 ```
 
-## حدود معروفة
+## Known limits
 
-تصدير PPTX قد لا يطابق المعاينة البصرية بنسبة كاملة دائماً. عند الحاجة لعروض نهائية عالية الدقة، راجع الملف بعد التصدير وعدّل القالب أو الهوية من داخل الطلب.
+PPTX export may not always match the visual preview perfectly. For high-stakes final decks, review the exported file and adjust the template or identity through the prompt when needed.
