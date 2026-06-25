@@ -1,37 +1,69 @@
 ---
-title: "واجهة API"
-description: "حالة واجهة API العامة في مبيان وكيف تطلب الوصول"
+title: "API access"
+description: "Public API status, access expectations, and integration planning for Mibyan"
 ---
 
-<div dir="rtl">
-
 <Note>
-واجهة API العامة لمبيان لا تزال قيد التجهيز. سنضيف هنا طريقة الاستخدام، المصادقة، والأمثلة العملية عندما تصبح الواجهة مستقرة للمستخدمين والمطوّرين.
+The public Mibyan API is being prepared. This page explains what API access is intended for and what information to provide if you need an integration.
 </Note>
 
-## لمن هذه الصفحة؟
+## Who needs API access?
 
-هذه الصفحة للمستخدمين أو الشركاء الذين يريدون ربط مبيان بتطبيقاتهم، أنظمة داخلية، أو أدوات تشغيل خارجية.
+Most users should use the Mibyan web application directly. API access is for teams that want to connect Mibyan to another product, internal system, automation, or workflow.
 
-## ما الذي سيضاف لاحقاً؟
+Common use cases include:
 
-- طريقة إنشاء مفتاح API أو الحصول على صلاحية الوصول.
-- أمثلة لإرسال طلب وإنشاء مخرج.
-- أمثلة للقراءة والتصدير.
-- حدود الاستخدام وسياسات الأمان.
-- رسائل الأخطاء الشائعة وطريقة التعامل معها.
+- Generating structured business documents from another app.
+- Creating draft reports from form submissions.
+- Producing pitch deck drafts from CRM or onboarding data.
+- Connecting Mibyan outputs to an internal review workflow.
+- Automating recurring business analysis or summaries.
 
-## حالياً
+## Current status
 
-إذا كنت تحتاج إلى تكامل API الآن، تواصل مع فريق مبيان واشرح حالة الاستخدام المطلوبة:
+The stable public API is not yet published as a self-serve SDK. Until public access is available, integrations should be discussed with the Mibyan team.
 
-- ما التطبيق أو النظام الذي تريد ربطه؟
-- ما نوع المخرجات المطلوبة؟
-- هل تحتاج إلى إنشاء مستندات، عروض، جداول، أو مواقع؟
-- ما حجم الاستخدام المتوقع؟
+When the API is ready, this documentation should include:
 
-<Card title="تواصل مع الدعم" icon="envelope" href="mailto:support@mibyanai.com">
-أرسل وصف التكامل المطلوب وسيتم توجيهك للخطوات المناسبة عند توفر الوصول.
+- Authentication and access setup.
+- Request and response examples.
+- Supported output types.
+- Rate limits and usage expectations.
+- Error handling.
+- Webhooks or callback patterns if supported.
+- Security and data handling guidelines.
+
+## What to prepare before requesting access
+
+If you need API access, prepare:
+
+- Your company or product name.
+- The system you want to connect.
+- The output types you need: documents, decks, spreadsheets, pages, or websites.
+- Expected request volume.
+- Whether outputs contain sensitive data.
+- Required languages.
+- Export requirements.
+- Any compliance or data residency constraints.
+
+## Integration planning checklist
+
+Before building an integration, clarify:
+
+- Who triggers the request?
+- What data is sent to Mibyan?
+- What output should be returned?
+- Who reviews the output before it is used?
+- Where should the final output be stored?
+- What happens if the output needs revision?
+- What information must never be sent?
+
+## Contact
+
+<Card title="Request API access" icon="envelope" href="mailto:support@mibyanai.com">
+Email the Mibyan team with your integration use case, expected volume, and required output types.
 </Card>
 
-</div>
+<Warning>
+Do not build against undocumented internal routes. Public API contracts will be documented here when they are ready for external use.
+</Warning>

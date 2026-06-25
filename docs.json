@@ -69,8 +69,8 @@
     }
   },
   "logo": {
-    "light": "/atlas-swarm-core-1/public/mibyan-logo.webp",
-    "dark": "/atlas-swarm-core-1/public/mibyan-logo.webp"
+    "light": "/logo/mibyan-logo.webp",
+    "dark": "/logo/mibyan-logo.webp"
   },
   "navbar": {
     "links": [

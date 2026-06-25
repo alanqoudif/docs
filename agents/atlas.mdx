@@ -1,38 +1,69 @@
 ---
-title: "أطلس: المنسّق الرئيسي"
-description: "دور أطلس في فهم طلبك وتوجيهه إلى الوكيل المناسب"
+title: "Atlas: the coordinator"
+description: "How Atlas understands requests, routes work, and helps combine specialist agents"
 ---
 
-<div dir="rtl">
+## Who is Atlas?
 
-## من هو أطلس؟
+Atlas is the main coordinator inside Mibyan. Its role is to understand what you are trying to accomplish, identify the best output type, and guide the work toward the right specialist style.
 
-أطلس هو المنسّق الرئيسي داخل مبيان. دوره أن يفهم طلبك، يحدد نوع العمل، ثم يوجهه إلى التخصص المناسب حتى تحصل على نتيجة مترابطة بدل إجابة عامة.
+Atlas is useful when your request is broad, multi-step, or unclear. Instead of forcing you to pick the exact workflow, Atlas helps translate your goal into a workable path.
 
-## ماذا يفعل؟
+## What Atlas does for you
 
-- يقرأ الرسالة والسياق السابق في المحادثة.
-- يحدد هل المطلوب مستند، عرض، صفحة، موقع، جدول، أو مجرد نقاش.
-- يختار الوكيل أو التخصص الأنسب.
-- يحافظ على ترابط النتيجة بين الأقسام.
-- يساعدك على تعديل المخرج بناءً على ملاحظاتك.
+- Understands the goal behind your message.
+- Decides whether the work should become a document, presentation, spreadsheet, web page, website, or strategic answer.
+- Combines specialist perspectives when the work needs more than one type of thinking.
+- Keeps the output aligned with the conversation context.
+- Helps revise an existing output without losing the original goal.
 
-## متى أذكر أطلس في الطلب؟
+## When Atlas is most useful
 
-غالباً لا تحتاج إلى ذلك. لكن يمكنك أن تطلب منه التنسيق بين أكثر من تخصص، مثل:
+<CardGroup cols={2}>
+<Card title="Complex business work" icon="briefcase">
+Examples: feasibility studies, launch plans, investor packs, operational roadmaps, and strategy documents.
+</Card>
+
+<Card title="Unclear starting points" icon="compass">
+Examples: "help me plan this idea", "turn this into something presentable", or "what should I create first?"
+</Card>
+
+<Card title="Multi-format outputs" icon="shuffle">
+Examples: create a report, then a deck, then a spreadsheet from the same project.
+</Card>
+
+<Card title="Agent coordination" icon="users">
+Examples: combine strategy, data, marketing, and operations in one coherent deliverable.
+</Card>
+</CardGroup>
+
+## How to prompt Atlas
+
+You can simply write your request, or explicitly ask Atlas to coordinate:
 
 ```text
-يا أطلس، نسّق بين التحليل المالي والكتابة التسويقية واكتب عرضاً مختصراً للإدارة.
+Atlas, help me turn this business idea into a complete investor package. Start with a brief strategy, then create a pitch deck outline, then list the financial assumptions I should prepare.
+```
+
+```text
+Atlas, coordinate Sara, Nasser, and Mira to create a feasibility study with a market section, operating plan, cost table, and risk analysis.
+```
+
+## Atlas prompt template
+
+```text
+Atlas, I want to create [output type] for [audience].
+The project is [context].
+The goal is [decision or outcome].
+Please include [required sections].
+Use a [tone] tone.
+If anything is unclear, ask me questions before creating the final output.
 ```
 
 ## Example
 
-طلب مثل:
-
 ```text
-اكتب دراسة جدوى لمقهى مختص في مسقط، مع جدول تكاليف وخطة افتتاح.
+Atlas, create a feasibility study for a specialty coffee shop in Muscat. The audience is a bank loan officer. Include concept, target customers, competitor landscape, startup costs, monthly operating costs, revenue assumptions, risk analysis, and a 90-day launch plan. Use a formal but practical tone.
 ```
 
-قد يجمع أطلس بين أسلوب سارة في كتابة المستند، وناصر في التحليل التجاري، وميرا في تنظيم الجداول.
-
-</div>
+Atlas may guide this toward a structured document, include strategic analysis, and ask for a financial table if the numbers need more detail.

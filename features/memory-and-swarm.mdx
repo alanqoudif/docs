@@ -1,41 +1,96 @@
 ---
-title: "السياق وفريق الوكلاء"
-description: "كيف يستفيد مبيان من المحادثة والمخرجات السابقة داخل نفس العمل"
+title: "Context and agent teamwork"
+description: "How to guide Mibyan with context, reuse previous outputs, and combine specialist agents"
 ---
 
-<div dir="rtl">
+## What context means in Mibyan
 
-## ماذا يتذكر مبيان؟
+Context is the information Mibyan uses to understand your request. It can include your current message, earlier messages in the conversation, the output you are editing, and any preferences you provide.
 
-يعتمد مبيان على سياق المحادثة الحالية والمخرجات المرتبطة بها. هذا يعني أنك تستطيع أن تطلب تعديلات على نتيجة سابقة داخل نفس العمل، أو تطلب منه استخدام ما كتبه قبل قليل في مخرج جديد.
+Good context helps Mibyan create work that is more relevant, specific, and consistent.
 
 <Info>
-للحصول على أفضل نتيجة، أبقِ التفاصيل المهمة داخل نفس المحادثة، أو أعد ذكرها بوضوح إذا فتحت عملاً جديداً.
+For best results, keep related work in the same conversation and restate critical details when starting a new one.
 </Info>
 
-## كيف يعمل فريق الوكلاء؟
+## What to include as context
 
-مبيان يقرأ طلبك ويختار الوكيل أو الأسلوب الأنسب. قد يمر الطلب على أكثر من تخصص: وكيل للكتابة، آخر للعرض، وآخر للتحليل أو الجداول. أنت لا تحتاج إلى اختيار كل ذلك يدوياً في كل مرة، لكن يمكنك توجيهه إذا أردت.
+- Company or project background.
+- Target audience.
+- Market, country, or region.
+- Product or service description.
+- Required output format.
+- Tone and language preferences.
+- Existing assumptions, numbers, or constraints.
+- Examples of what you like or dislike.
+- Deadline, decision, or use case for the output.
 
-## متى تعطيه سياقاً إضافياً؟
+## Reusing previous outputs
 
-- إذا كان لديك جمهور محدد أو سوق محدد.
-- إذا كان المطلوب مرتبطاً بمخرج سابق.
-- إذا كانت هناك قيود قانونية أو مالية أو تشغيلية.
-- إذا كنت تريد أسلوباً معيناً مثل رسمي، تسويقي، مختصر، أو تفصيلي.
-
-## مثال
-
-بدلاً من:
-
-```text
-اكتب عرضاً عن المشروع.
-```
-
-اكتب:
+You can ask Mibyan to continue from an existing output:
 
 ```text
-اكتب عرضاً من 10 شرائح لمستثمرين عن تطبيق توصيل طرود في عُمان. استخدم الأرقام التي ذكرتها في المحادثة السابقة، واجعل النبرة واثقة ومختصرة.
+Use the feasibility study we just created and turn the financial assumptions into a spreadsheet.
 ```
 
-</div>
+```text
+Keep the same business idea, but rewrite the executive summary for a government grant application.
+```
+
+```text
+Use the content from this document to create a 12-slide pitch deck.
+```
+
+## How agent teamwork works for users
+
+You do not need to manually manage agents. Mibyan reads the request and chooses the relevant specialist style. For complex work, you can explicitly ask for multiple perspectives.
+
+<CardGroup cols={2}>
+<Card title="Strategy plus writing" icon="chart-line">
+Use when you need a business plan, proposal, or feasibility study that must be both analytical and readable.
+</Card>
+
+<Card title="Data plus presentation" icon="presentation">
+Use when numbers need to become a clear executive deck.
+</Card>
+
+<Card title="Marketing plus web page" icon="palette">
+Use when you need a landing page, campaign page, or polished service explanation.
+</Card>
+
+<Card title="Operations plus spreadsheet" icon="list-check">
+Use when you need a roadmap, launch plan, checklist, or owner-based tracker.
+</Card>
+</CardGroup>
+
+## When to ask for clarifying questions
+
+If the task is high-value or vague, ask Mibyan to interview you first:
+
+```text
+Before writing the final output, ask me up to 7 questions that would improve the quality of the deck.
+```
+
+This is useful for investor materials, legal-adjacent documents, financial plans, government submissions, public websites, and anything that will be reviewed by leadership.
+
+## Common context mistakes
+
+- Asking for a large output with no audience.
+- Not saying whether the output is a draft, final document, or presentation.
+- Forgetting to mention the market or region.
+- Mixing several goals in one vague request.
+- Asking for "professional" without saying what professional means for the audience.
+
+## Better context example
+
+Instead of:
+
+```text
+Create a plan for my app.
+```
+
+Use:
+
+```text
+Create a 90-day launch plan for a peer-to-peer parcel delivery app in Oman. The audience is the founding team. Include weekly milestones, marketing tests, operations setup, driver onboarding, risks, owners, and KPI targets. Keep it practical and execution-focused.
+```

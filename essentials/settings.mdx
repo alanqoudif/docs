@@ -1,52 +1,69 @@
 ---
-title: "إعدادات الحساب"
-description: "كيف تضبط ملفك الشخصي وتفضيلات العمل داخل مبيان"
+title: "Account settings"
+description: "Set up your profile and preferences so Mibyan can create more relevant outputs"
 icon: "gear"
 ---
 
-<div dir="rtl">
+## Why settings matter
 
-## ماذا تجد في الإعدادات؟
+Settings help Mibyan understand how you prefer to work. They do not replace the details you provide in each request, but they can make recurring outputs more consistent.
 
-تساعدك صفحة الإعدادات على ضبط المعلومات التي يحتاجها مبيان ليقدّم نتائج أقرب لأسلوبك وطريقة عملك.
+## Profile information
 
-<CardGroup cols={2}>
-<Card title="الملف الشخصي" icon="user">
-حدّث اسمك ومعلومات التواصل المتاحة داخل الحساب.
-</Card>
+Keep your profile information accurate so your account and workspace are easier to manage. Depending on the available sign-in method, this may include your name, email, phone number, or basic account details.
 
-<Card title="تفضيلات العمل" icon="sliders">
-أضف تعليمات عامة مثل اللغة المفضلة، مستوى التفصيل، وطريقة تنسيق المخرجات.
-</Card>
+## Work preferences
 
-<Card title="التنبيهات" icon="bell">
-اضبط ما تريد متابعته أو تذكيرك به عندما تكون خيارات التنبيه متاحة.
-</Card>
+Preferences are useful for recurring instructions. Add preferences that should apply often, not one-time project details.
 
-<Card title="الأمان" icon="shield-check">
-راجع بيانات الدخول والحساب، واستخدم بريداً أو رقماً موثوقاً عند توفر خيارات التحقق.
-</Card>
-</CardGroup>
+Good examples:
 
-## تعليمات مخصصة مفيدة
+- "Prefer clear executive summaries before detailed sections."
+- "Use concise, practical language."
+- "When writing in Arabic, use modern standard Arabic unless I ask otherwise."
+- "For business plans, include assumptions, risks, and next steps."
+- "For spreadsheets, make columns easy to copy into Excel."
+- "For landing pages, prioritize mobile readability."
 
-يمكنك كتابة تفضيلات عامة تساعد مبيان على فهم أسلوبك، مثل:
+Avoid preferences that are too broad:
 
-- "اكتب دائماً بالعربية الفصحى المبسطة."
-- "اختصر النتائج التنفيذية في البداية ثم أضف التفاصيل."
-- "استخدم السوق العُماني كمرجع عند تحليل التكاليف."
-- "اجعل الجداول مناسبة للنسخ إلى Excel."
-- "عند إنشاء صفحات ويب، اجعلها RTL ومتجاوبة مع الجوال."
+- "Make everything good."
+- "Always be professional."
+- "Write a lot."
+
+Instead, explain what "good", "professional", or "detailed" means for your work.
+
+## When to update settings
+
+Update your settings when:
+
+- Your preferred writing style changes.
+- You start using Mibyan for a different type of work.
+- You notice repeated output issues.
+- You want a consistent default tone.
+- Your team adopts a shared documentation or presentation style.
+
+## Settings versus prompt details
+
+Use settings for stable preferences. Use the prompt for project-specific context.
+
+<CodeGroup>
+```text Settings preference
+For most business writing, start with a concise executive summary and then provide detailed sections.
+```
+
+```text Project prompt
+Write a feasibility study for a specialty cafe in Muscat for a bank loan application. Include startup costs, monthly operating costs, revenue assumptions, risks, and a 90-day launch plan.
+```
+</CodeGroup>
+
+## Security and privacy habits
+
+- Do not paste passwords or secret keys into prompts.
+- Avoid sharing private customer data unless it is necessary and permitted.
+- Remove sensitive details before exporting or sharing generated work.
+- Review important outputs before sending them outside your organization.
 
 <Tip>
-التعليمات العامة لا تغني عن تفاصيل كل طلب. عند العمل على مشروع مهم، أعد ذكر الجمهور والهدف والقيود داخل المحادثة نفسها.
+If Mibyan keeps producing outputs in a style you do not like, update your preferences and then give one concrete example of the style you want.
 </Tip>
-
-## متى أراجع الإعدادات؟
-
-- عند إنشاء الحساب لأول مرة.
-- عندما يتغير أسلوبك المفضل في الكتابة.
-- قبل العمل على مشروع كبير يحتاج إلى تعليمات ثابتة.
-- إذا لاحظت أن النتائج لا تتبع لغتك أو تنسيقك المفضل.
-
-</div>
