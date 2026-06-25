@@ -1,0 +1,79 @@
+---
+title: "List Models"
+description: "Retrieve a list of models currently available in the Mibyan API."
+api: "GET https://mibyanai.com/api/public/v1/models"
+---
+
+Retrieves the list of models currently available in the Mibyan API. This endpoint is fully compatible with the OpenAI Models API.
+
+## Request Headers
+
+| Header | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `Authorization` | `string` | Yes | Must be set to `Bearer <your-api-key>` (starts with `mb-`). |
+| `x-mibyan-api-key` | `string` | No | Alternative way to pass your API key. |
+
+---
+
+## Response Body
+
+<ResponseField name="object" type="string">
+  The object type, always `list`.
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  A list of model objects.
+  <Expandable title="Model Object">
+    <ResponseField name="id" type="string">
+      The model identifier (e.g., `mibyan-4.1`).
+    </ResponseField>
+    <ResponseField name="object" type="string">
+      The object type, always `model`.
+    </ResponseField>
+    <ResponseField name="created" type="integer">
+      The Unix timestamp (in seconds) of when the model was created.
+    </ResponseField>
+    <ResponseField name="owned_by" type="string">
+      The organization that owns the model, always `mibyan`.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+---
+
+## Examples
+
+### cURL
+
+```bash
+curl https://mibyanai.com/api/public/v1/models \
+  -H "Authorization: Bearer mb-..."
+```
+
+### Response Example (JSON)
+
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "mibyan-4.1",
+      "object": "model",
+      "created": 1782390000,
+      "owned_by": "mibyan"
+    },
+    {
+      "id": "mibyan-embed-1",
+      "object": "model",
+      "created": 1782390000,
+      "owned_by": "mibyan"
+    },
+    {
+      "id": "mibyan-embed-small",
+      "object": "model",
+      "created": 1782390000,
+      "owned_by": "mibyan"
+    }
+  ]
+}
+```

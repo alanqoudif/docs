@@ -1,0 +1,123 @@
+---
+title: "Embeddings"
+description: "Generate vector representations of text for semantic search, clustering, or RAG."
+api: "POST https://mibyanai.com/api/public/v1/embeddings"
+---
+
+Generates a vector representation (embeddings) of the input text. This endpoint is fully compatible with the OpenAI Embeddings API.
+
+## Request Headers
+
+| Header | Type | Required | Description |
+| :--- | :--- | :--- | :--- |
+| `Authorization` | `string` | Yes | Must be set to `Bearer <your-api-key>` (starts with `mb-`). |
+| `Content-Type` | `string` | Yes | Must be set to `application/json`. |
+| `x-mibyan-api-key` | `string` | No | Alternative way to pass your API key. |
+
+## Request Body
+
+<ResponseField name="model" type="string" default="mibyan-embed-1">
+  The embedding model to use.
+  
+  * **`mibyan-embed-1`**: High-dimensional text embedding model optimized for semantic search and retrieval-augmented generation (RAG). (3072 dimensions)
+  * **`mibyan-embed-small`**: A fast, lightweight embedding model suitable for lower-latency semantic tasks. (1536 dimensions)
+</ResponseField>
+
+<ResponseField name="input" type="string or array" required>
+  Input text to embed, encoded as a string or array of strings. To embed multiple inputs in a single request, pass an array of strings.
+</ResponseField>
+
+---
+
+## Response Body
+
+<ResponseField name="object" type="string">
+  The object type, always `list`.
+</ResponseField>
+
+<ResponseField name="data" type="array">
+  A list of embedding objects.
+  <Expandable title="Embedding Object">
+    <ResponseField name="object" type="string">
+      The object type, always `embedding`.
+    </ResponseField>
+    <ResponseField name="index" type="integer">
+      The index of the embedding in the list.
+    </ResponseField>
+    <ResponseField name="embedding" type="array">
+      The embedding vector, which is a list of floats.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+<ResponseField name="model" type="string">
+  The model used to generate the embeddings.
+</ResponseField>
+
+<ResponseField name="usage" type="object">
+  Usage statistics for the request.
+  <Expandable title="Usage Object">
+    <ResponseField name="prompt_tokens" type="integer">
+      Number of tokens in the input text.
+    </ResponseField>
+    <ResponseField name="total_tokens" type="integer">
+      Total number of tokens used in the request.
+    </ResponseField>
+  </Expandable>
+</ResponseField>
+
+---
+
+## Examples
+
+### cURL (Single Input)
+
+```bash
+curl https://mibyanai.com/api/public/v1/embeddings \
+  -H "Authorization: Bearer mb-..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "mibyan-embed-1",
+    "input": "The quick brown fox jumps over the lazy dog"
+  }'
+```
+
+### cURL (Multiple Inputs)
+
+```bash
+curl https://mibyanai.com/api/public/v1/embeddings \
+  -H "Authorization: Bearer mb-..." \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "mibyan-embed-small",
+    "input": [
+      "The quick brown fox",
+      "jumps over the lazy dog"
+    ]
+  }'
+```
+
+### Response Example (JSON)
+
+```json
+{
+  "object": "list",
+  "data": [
+    {
+      "object": "embedding",
+      "index": 0,
+      "embedding": [
+        0.0023064255,
+        -0.025527944,
+        0.012395841,
+        "..."
+      ]
+    }
+  ],
+  "model": "mibyan-embed-1",
+  "usage": {
+    "prompt_tokens": 9,
+    "total_tokens": 9
+  }
+}
+```

@@ -45,9 +45,17 @@
         "tab": "API",
         "groups": [
           {
-            "group": "Developer access",
+            "group": "Getting Started",
             "pages": [
               "api-reference/introduction"
+            ]
+          },
+          {
+            "group": "API Endpoints",
+            "pages": [
+              "api-reference/chat-completions",
+              "api-reference/embeddings",
+              "api-reference/models"
             ]
           }
         ]

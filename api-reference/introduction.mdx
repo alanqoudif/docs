@@ -1,69 +1,126 @@
 ---
-title: "API access"
-description: "Public API status, access expectations, and integration planning for Mibyan"
+title: "API Overview"
+description: "Learn how to integrate Mibyan's OpenAI-compatible API into your applications, workflows, and scripts."
 ---
 
-<Note>
-The public Mibyan API is being prepared. This page explains what API access is intended for and what information to provide if you need an integration.
-</Note>
+The Mibyan API is fully OpenAI-compatible, allowing you to use standard OpenAI clients, the Vercel AI SDK, or simple HTTP requests to interact with Mibyan's powerful models.
 
-## Who needs API access?
+## Base URL
 
-Most users should use the Mibyan web application directly. API access is for teams that want to connect Mibyan to another product, internal system, automation, or workflow.
+All API requests should be made to the following base URL:
 
-Common use cases include:
+```text
+https://mibyanai.com/api/public/v1
+```
 
-- Generating structured business documents from another app.
-- Creating draft reports from form submissions.
-- Producing pitch deck drafts from CRM or onboarding data.
-- Connecting Mibyan outputs to an internal review workflow.
-- Automating recurring business analysis or summaries.
+## Authentication
 
-## Current status
+The Mibyan API uses API keys for authentication. You can generate and manage your API keys in the **API Keys** section of the Mibyan Developer Dashboard.
 
-The stable public API is not yet published as a self-serve SDK. Until public access is available, integrations should be discussed with the Mibyan team.
+To authenticate your requests, pass your API key (which begins with `mb-`) in the `Authorization` header as a Bearer token:
 
-When the API is ready, this documentation should include:
+```http
+Authorization: Bearer mb-...
+```
 
-- Authentication and access setup.
-- Request and response examples.
-- Supported output types.
-- Rate limits and usage expectations.
-- Error handling.
-- Webhooks or callback patterns if supported.
-- Security and data handling guidelines.
+Alternatively, you can pass the API key using the custom header:
 
-## What to prepare before requesting access
-
-If you need API access, prepare:
-
-- Your company or product name.
-- The system you want to connect.
-- The output types you need: documents, decks, spreadsheets, pages, or websites.
-- Expected request volume.
-- Whether outputs contain sensitive data.
-- Required languages.
-- Export requirements.
-- Any compliance or data residency constraints.
-
-## Integration planning checklist
-
-Before building an integration, clarify:
-
-- Who triggers the request?
-- What data is sent to Mibyan?
-- What output should be returned?
-- Who reviews the output before it is used?
-- Where should the final output be stored?
-- What happens if the output needs revision?
-- What information must never be sent?
-
-## Contact
-
-<Card title="Request API access" icon="envelope" href="mailto:support@mibyanai.com">
-Email the Mibyan team with your integration use case, expected volume, and required output types.
-</Card>
+```http
+x-mibyan-api-key: mb-...
+```
 
 <Warning>
-Do not build against undocumented internal routes. Public API contracts will be documented here when they are ready for external use.
+  Keep your API keys secure. Do not share them publicly or commit them to client-side code or public repositories.
 </Warning>
+
+## Supported Models
+
+Mibyan provides state-of-the-art models for chat completions and text embeddings.
+
+### Chat Model
+
+* **`mibyan-4.1`**: A highly sophisticated, Arabic-first model designed for professional business writing, complex reasoning, and structured outputs.
+
+### Embedding Models
+
+* **`mibyan-embed-1`**: High-dimensional text embedding model optimized for semantic search and retrieval-augmented generation (RAG). (3072 dimensions)
+* **`mibyan-embed-small`**: A fast, lightweight embedding model suitable for lower-latency semantic tasks. (1536 dimensions)
+
+---
+
+## Client Integration
+
+Because the Mibyan API is OpenAI-compatible, integrating it into your existing projects is straightforward.
+
+### Vercel AI SDK
+
+To use Mibyan with the Vercel AI SDK, configure the OpenAI-compatible provider:
+
+```typescript mibyan.ts
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
+
+// Initialize the Mibyan client
+export const mibyan = createOpenAICompatible({
+  name: "mibyan",
+  baseURL: "https://mibyanai.com/api/public/v1",
+  headers: { 
+    Authorization: `Bearer ${process.env.MIBYAN_API_KEY}` 
+  },
+});
+```
+
+Now you can generate text using standard AI SDK functions:
+
+```typescript index.ts
+import { generateText } from "ai";
+import { mibyan } from "./mibyan";
+
+const { text } = await generateText({
+  model: mibyan("mibyan-4.1"),
+  prompt: "Draft a 90-day launch plan for a parcel delivery service in Muscat.",
+});
+
+console.log(text);
+```
+
+### Python OpenAI SDK
+
+You can use the official `openai` Python package by overriding the `base_url` and `api_key`:
+
+```python
+from openai import OpenAI
+
+client = OpenAI(
+    base_url="https://mibyanai.com/api/public/v1",
+    api_key="mb-..."
+)
+
+response = client.chat.completions.create(
+    model="mibyan-4.1",
+    messages=[
+        {"role": "user", "content": "Hello! Tell me about Mibyan."}
+    ]
+)
+
+print(response.choices[0].message.content)
+```
+
+### Node.js OpenAI SDK
+
+Similarly, in Node.js:
+
+```javascript
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  baseURL: "https://mibyanai.com/api/public/v1",
+  apiKey: "mb-..."
+});
+
+const completion = await openai.chat.completions.create({
+  model: "mibyan-4.1",
+  messages: [{ role: "user", content: "Hello!" }],
+});
+
+console.log(completion.choices[0].message.content);
+```
