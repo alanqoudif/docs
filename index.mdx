@@ -1,97 +1,66 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: "مبيان"
+description: "توثيق منصة مبيان، الوكلاء، الأدوات، الـ API، وتشغيل المشروع"
 ---
 
-## Setting up
+مبيان هو منصة عربية متعددة الوكلاء من Nuqta. في الكود الداخلي اسم المشروع هو `atlas-swarm-core-1`، وفي المنتج يظهر باسم مبيان، والمنسق الرئيسي يظهر تسويقياً باسم أطلس بينما يسمى في بعض الملفات `master`.
 
-Get your documentation site up and running in minutes.
+هذه الوثائق تشرح المنصة كما هي مبنية فعلياً: تطبيق TanStack Start يعمل على Cloudflare، يستخدم Supabase للمصادقة والبيانات، OpenRouter للتوليد، ووظائف Supabase Edge لخط إنتاج العروض.
 
 <Card
-  title="Start here"
+  title="ابدأ بسرعة"
   icon="rocket"
   href="/quickstart"
   horizontal
 >
-  Follow our three step quickstart guide.
+  أنشئ حساباً، افتح محادثة، واطلب أول مستند أو عرض أو موقع.
 </Card>
 
-## Make it yours
+## ما الذي تفعله المنصة؟
 
-Design a docs site that looks great and empowers your users.
+يستقبل مبيان طلب المستخدم في واجهة محادثة، يحلله، يختار الوكيل المناسب، ثم ينشئ Artifact قابل للعرض والتصدير. الأنواع الأساسية هي مستندات Markdown، صفحات HTML، جداول، عروض تقديمية، ومواقع متعددة الصفحات.
 
 <Columns cols={2}>
   <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
+    title="المعمارية"
+    icon="diagram-project"
+    href="/platform/architecture"
   >
-    Edit your docs locally and preview them in real time.
+    Browser، Cloudflare Worker، Supabase، OpenRouter، وخط إنتاج العروض.
   </Card>
   <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
+    title="الوكلاء"
+    icon="users-gear"
+    href="/agents/overview"
   >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
+    أطلس، سالم، سارة، ناصر، ليلى، عمر، ميرا، وكيمي كلو.
   </Card>
   <Card
-    title="API documentation"
+    title="Artifacts"
+    icon="shapes"
+    href="/features/artifacts"
+  >
+    كيف تُنشأ المخرجات، تُحفظ، تُعرض، وتُحدّث داخل المشروع.
+  </Card>
+  <Card
+    title="API"
     icon="terminal"
     href="/api-reference/introduction"
   >
-    Auto-generate API documentation from OpenAPI specifications.
+    مرجع أولي للـ API الداخلي والـ SSE المستخدم في التطبيق.
   </Card>
 </Columns>
 
-## Create beautiful pages
+## مصادر الحقيقة
 
-Everything you need to create world-class documentation.
+اعتمدت هذه الوثائق على ملفات التطبيق نفسها:
 
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
+- `atlas-swarm-core-1/src/data/mubayyan.ts` لتعريف الوكلاء.
+- `atlas-swarm-core-1/src/server/agent-tools.server.ts` لأدوات الوكلاء.
+- `atlas-swarm-core-1/src/routes/api/public/*` لنقاط الـ API.
+- `atlas-swarm-core-1/supabase/migrations/*` و `src/integrations/supabase/types.ts` للبيانات.
+- `atlas-swarm-core-1/src/components/docs/*` للوثائق العربية داخل التطبيق.
 
-## Need inspiration?
-
-<Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
->
-  Browse our showcase of exceptional documentation sites.
-</Card>
+<Warning>
+بعض صفحات التسويق داخل التطبيق تتحدث عن ميزات أوسع من التنفيذ الحالي، مثل الذاكرة طويلة الأمد العامة أو تشغيل 100 وكيل فعلياً بالتوازي. هذه الوثائق تفرّق بين الموجود الآن وخارطة الطريق.
+</Warning>
