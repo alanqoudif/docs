@@ -1,0 +1,40 @@
+---
+title: "نموذج البيانات"
+description: "الجداول الأساسية في Supabase وما تخزنه"
+---
+
+## المصدر
+
+المصدر العملي هو migrations داخل `atlas-swarm-core-1/supabase/migrations` والأنواع المولدة في `src/integrations/supabase/types.ts`.
+
+## جداول المنتج
+
+- `profiles`: بيانات المستخدم والتفضيلات مثل `custom_instructions`.
+- `conversations`: مشاريع المستخدم، وهي ما يظهر في المسار `/chat/$projectId`.
+- `messages`: رسائل المستخدم والمساعد داخل كل محادثة.
+- `artifacts`: المخرجات الحالية المرتبطة بمحادثة.
+- `artifact_versions`: إصدارات المخرجات بعد الإنشاء والتعديل.
+- `websites`: مواقع متعددة الصفحات منشأة عبر `create_website`.
+- `website_pages`: صفحات المواقع المنشورة على `/sites/{slug}`.
+- `presentations`: بيانات العروض التقديمية.
+- `skills`: تعليمات قابلة للحقن في سياق الدردشة والتصنيف.
+- `ai_usage_log`: تتبع استخدام نماذج الذكاء الاصطناعي والتكلفة.
+
+## جداول المصادقة والمساعدة
+
+- `phone_otps`: رموز OTP للهاتف.
+- `desktop_handoff_codes`: أكواد قصيرة لربط تطبيق سطح المكتب، مع TTL قصير.
+- `affiliate_interest`: اهتمام الشركاء أو الافلييت.
+
+## جداول البريد
+
+- `email_send_log`
+- `email_send_state`
+- `email_unsubscribe_tokens`
+- `suppressed_emails`
+
+توجد أيضاً RPCs للبريد مثل enqueue/read batch حسب migrations.
+
+## ملاحظات أمنية
+
+كل API يغيّر بيانات المستخدم يجب أن يتحقق من Bearer JWT عبر `requireAuth`، ثم يتحقق من ملكية المورد، خصوصاً `conversationId` و`artifactId`. أدوات الوكيل تستخدم admin client، لذلك شرط التقييد بالـ user والمحادثة جوهري وليس اختيارياً.

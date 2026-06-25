@@ -1,43 +1,46 @@
-# Mintlify Starter Kit
+# Mibyan / Atlas Swarm Core One Docs
 
-Use the starter kit to get your docs deployed and ready to customize.
+This repository contains the external Mintlify documentation for Mibyan, internally referred to as Atlas Swarm Core One. The application source used as the documentation source of truth lives in `atlas-swarm-core-1`.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## Structure
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+- `docs.json`: Mintlify navigation and site settings.
+- `index.mdx`, `quickstart.mdx`: product introduction and first-user flow.
+- `platform/`: naming, architecture, and product model.
+- `agents/`: Atlas and specialist agent docs.
+- `features/`: artifacts, export, memory, and swarm behavior.
+- `developers/`: API, tools, and data model notes.
+- `operations/`: deployment and environment runbooks.
+- `atlas-swarm-core-1/`: the product app used to derive the docs.
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+## Local preview
 
-## Development
-
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+Install the Mintlify CLI:
 
 ```
 npm i -g mint
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+Run the docs preview from this directory:
 
 ```
 mint dev
 ```
 
-View your local preview at `http://localhost:3000`.
+View the local preview at `http://localhost:3000`.
 
-## Publishing changes
+## Product app
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+To run the app:
 
-## Need help?
+```
+cd atlas-swarm-core-1
+pnpm install
+pnpm dev
+```
 
-### Troubleshooting
+## Documentation rule
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+Prefer the codebase over marketing copy when documenting behavior. Some product pages describe roadmap-level capabilities; the external docs should distinguish current implementation from roadmap.
 
-### Resources
-- [Mintlify documentation](https://mintlify.com/docs)
+Never commit secrets from `.env` files.

@@ -1,0 +1,101 @@
+---
+title: "API Overview"
+description: "نقاط API الحقيقية في Atlas Swarm Core One"
+---
+
+## الحالة العامة
+
+يوجد API داخلي فعلي يستخدمه تطبيق مبيان، لكنه ليس SDK عاماً مستقراً بعد. صفحة `/api-docs` داخل التطبيق تعرض انتظاراً للـ API العام. لذلك اعتبر هذه الصفحة مرجعاً للمطورين الداخليين أو التكاملات المصرّح بها.
+
+## المصادقة
+
+معظم المسارات تستخدم:
+
+```http
+Authorization: Bearer <supabase_access_token>
+Content-Type: application/json
+```
+
+المسارات التي تخدم تطبيقات خارجية مثل `/api/public/ai/models` تضيف CORS، لكن هذا لا يعني أن كل المسارات عامة بدون مصادقة.
+
+## Core agent API
+
+### `POST /api/public/agent-run`
+
+يشغل حلقة الوكيل ويبث Server-Sent Events.
+
+Request:
+
+```json
+{
+  "conversationId": "uuid",
+  "userMessage": "اكتب تقريراً...",
+  "excludeTools": ["create_slides"]
+}
+```
+
+أحداث stream الأساسية:
+
+- `agent_assigned`
+- `requirements`
+- `thinking`
+- `progress`
+- `tool_call`
+- `tool_result`
+- `assistant_text`
+- `done`
+- `error`
+
+### `POST /api/public/classify`
+
+يصنف النص إلى `chat` أو `task`، ويقترح وكيل وأسئلة توضيحية.
+
+```json
+{
+  "text": "اصنع عرضاً تقديمياً لشركة ناشئة"
+}
+```
+
+Response:
+
+```json
+{
+  "kind": "task",
+  "agent": "salem",
+  "title": "عرض شركة ناشئة",
+  "questions": []
+}
+```
+
+## Generation endpoints
+
+المشروع يحتوي مسارات مستقلة للتوليد، منها:
+
+- `POST /api/public/doc`
+- `POST /api/public/html`
+- `POST /api/public/sheet`
+- `POST /api/public/file-artifact`
+- `POST /api/public/restyle-docx`
+
+استخدم `/agent-run` كالمسار الأساسي لتجربة المنتج، واستخدم هذه المسارات عندما تحتاج توليداً متخصصاً خارج حلقة الوكيل.
+
+## Skills API
+
+- `GET /api/public/skills`: يعرض المهارات المفعلة.
+- `POST /api/public/skills`: يختار skill مناسباً لنص معين.
+- `POST /api/public/skills/import`: استيراد إداري محمي بـ `SKILLS_ADMIN_TOKEN`.
+
+## Desktop and AI proxy
+
+- `GET /api/public/ai/models`: يعرض قائمة النماذج المسموح بها.
+- `POST /api/public/ai/chat`: proxy إلى Lovable AI gateway.
+- `POST /api/public/ai/openrouter/chat`: proxy إلى OpenRouter.
+- `GET /api/public/ai/usage`: استخدام وتكلفة من `ai_usage_log`.
+- `POST /api/public/desktop-handoff/redeem`: استبدال كود ربط سطح المكتب.
+
+## Edge functions
+
+- `generate-deck`: خط إنتاج العروض، يبث أحداثاً متعددة.
+- `export-deck-pptx`: تصدير PPTX.
+
+هذه ليست TanStack routes؛ تنشر وتضبط أسرارها عبر Supabase Edge Functions.

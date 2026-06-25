@@ -1,0 +1,41 @@
+---
+title: "التصدير"
+description: "DOCX وPPTX وXLSX ومسارات التصدير في مبيان"
+---
+
+## نظرة عامة
+
+التصدير في مبيان موزع على أكثر من مسار، لأن كل نوع Artifact له احتياج مختلف. المستندات والجداول والعروض لا تمر كلها عبر نفس الكود.
+
+## المسارات
+
+<AccordionGroup>
+<Accordion title="DOCX">
+المستندات تبدأ عادة كـ Markdown. مسارات مثل `file-artifact` و`restyle-docx` تتعامل مع تحويل أو تنسيق ملفات Office. قوالب البريد والمستندات تعتمد على مكتبات مثل `docx`.
+</Accordion>
+
+<Accordion title="XLSX">
+الجداول تُنشأ كبيانات منظمة عبر `create_sheet`، ثم يمكن تصديرها باستخدام SheetJS `xlsx`.
+</Accordion>
+
+<Accordion title="PPTX">
+العروض تستخدم أكثر من مسار: `create_slides` لإنتاج بنية العرض، `generate-deck` لإنشاء deck أغنى، و`export-deck-pptx` للتصدير. يوجد أيضاً اعتماد على `pptxgenjs`.
+</Accordion>
+
+<Accordion title="HTML / Website">
+صفحات HTML تُعرض مباشرة داخل preview، والمواقع متعددة الصفحات تُنشر عبر مسار `/sites/{slug}`.
+</Accordion>
+</AccordionGroup>
+
+## حدود مهمة
+
+<Warning>
+مطابقة المعاينة البصرية HTML مع ملف PPTX النهائي ليست مضمونة 100% حالياً. الخطة الداخلية في `.lovable/plan.md` تشير إلى عمل مستقبلي لتحسين snapshot export والـ presets.
+</Warning>
+
+## نصائح للمستخدم
+
+- اطلب الصيغة صراحة: DOCX، PPTX، XLSX، HTML، أو موقع متعدد الصفحات.
+- للعروض، حدد عدد الشرائح ونوع الجمهور.
+- للمستندات الطويلة، حدد عدد الكلمات أو الصفحات والأقسام المطلوبة.
+- للجداول، حدد الأعمدة وعدد الصفوف إن كان مهماً.

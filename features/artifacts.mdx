@@ -1,0 +1,59 @@
+---
+title: "Artifacts والمخرجات"
+description: "كيف ينشئ مبيان المستندات، الصفحات، الجداول، العروض، والمواقع"
+---
+
+## ما هو Artifact؟
+
+Artifact هو ناتج محفوظ داخل مشروع المستخدم. يظهر في لوحة المعاينة ويمكن تعديله أو تصديره. كل Artifact مرتبط بمحادثة ومستخدم، وتُحفظ نسخه في جدول `artifact_versions`.
+
+## الأنواع الأساسية
+
+<CardGroup cols={2}>
+<Card title="Document" icon="file-lines">
+محتوى Markdown للتقارير، الخطط، المقالات، والعقود. يُعرض عبر `DocArtifact`.
+</Card>
+
+<Card title="HTML" icon="browser">
+صفحة HTML كاملة مع CSS وJS داخليين. تُعرض عبر `HtmlArtifact`.
+</Card>
+
+<Card title="Sheet" icon="table">
+جداول بيانات قابلة للتصدير كـ XLSX. تُنشأ عبر `create_sheet`.
+</Card>
+
+<Card title="Slides" icon="presentation">
+بنية شرائح أو deck pipeline. تُعرض عبر مكونات preview وتُصدّر عبر مسارات PPTX.
+</Card>
+
+<Card title="Website" icon="globe">
+موقع متعدد الصفحات يُنشر على `/sites/{slug}` ويخزن في `websites` و`website_pages`.
+</Card>
+</CardGroup>
+
+## دورة حياة Artifact
+
+<Steps>
+<Step title="إنشاء">
+الوكيل يستدعي أداة مثل `create_doc` أو `create_website`.
+</Step>
+
+<Step title="تخزين">
+الخادم يستخدم Supabase admin client لتخزين الناتج داخل `artifacts`، مع ربطه بـ `conversationId` و`userId`.
+</Step>
+
+<Step title="عرض">
+الواجهة تستقبل حدث `tool_result` وتفتح الناتج داخل `ArtifactCanvas`.
+</Step>
+
+<Step title="تعديل">
+عند التعديل، الأداة تقرأ النسخة الحالية عبر `read_artifact` أو مباشرة من قاعدة البيانات، ثم تنشئ نسخة جديدة.
+</Step>
+</Steps>
+
+## أين تجد الكود؟
+
+- مكونات العرض: `src/components/mubayyan/*Artifact.tsx`.
+- أدوات الإنشاء: `src/server/agent-tools.server.ts`.
+- مخازن الواجهة: `src/lib/artifactsStore.ts` و`src/lib/conversationsStore.ts`.
+- أنواع Supabase: `src/integrations/supabase/types.ts`.

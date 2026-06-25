@@ -1,0 +1,63 @@
+---
+title: "أدوات الوكلاء"
+description: "Tool schemas التي يستخدمها Atlas داخل /api/public/agent-run"
+---
+
+## المصدر
+
+تعريف الأدوات وتنفيذها موجود في `atlas-swarm-core-1/src/server/agent-tools.server.ts`. كل أداة تعمل داخل سياق محدد بـ `userId` و`conversationId` وتستخدم Supabase admin client مع تحقق ملكية المحادثة في route الوكيل.
+
+## الأدوات
+
+<AccordionGroup>
+<Accordion title="create_doc">
+ينشئ مستند Markdown جديداً. مناسب للتقارير، الخطط، المقالات، العقود، ودراسات الجدوى. يقبل `title`, `prompt`, `audience`, `tone`, `length`, `length_words`, `target_sections`, `sections`, و`must_include`.
+</Accordion>
+
+<Accordion title="update_doc">
+يحدّث مستنداً موجوداً عبر `artifactId` و`instruction`. يجب قراءة أو تحديد الـ artifact الصحيح قبل التعديل.
+</Accordion>
+
+<Accordion title="create_html">
+ينشئ صفحة HTML كاملة تشمل `<!DOCTYPE html>`, CSS داخل `<style>`, وJS داخل `<script>`. مناسب لصفحات الهبوط والمواقع الصغيرة أحادية الصفحة.
+</Accordion>
+
+<Accordion title="update_html">
+يعيد توليد HTML موجود بناءً على تعليمات تعديل.
+</Accordion>
+
+<Accordion title="create_sheet">
+ينشئ جدول بيانات. مناسب للميزانيات، KPIs، المقارنات، والقوائم. يقبل `columns` و`min_rows` عند الحاجة.
+</Accordion>
+
+<Accordion title="create_slides">
+ينشئ عرضاً تقديمياً كبنية JSON. للعروض الأكثر تقدماً، راجع مسار `generate-deck`.
+</Accordion>
+
+<Accordion title="read_artifact">
+يقرأ محتوى Artifact موجود. استخدمه قبل تعديل ناتج سابق أو إنشاء ناتج جديد يعتمد عليه.
+</Accordion>
+
+<Accordion title="create_website">
+ينشئ موقعاً متعدد الصفحات وينشره تلقائياً على `/sites/{slug}`. يخزن الصفحات في `websites` و`website_pages`.
+</Accordion>
+</AccordionGroup>
+
+## أحداث الأدوات
+
+الأدوات ترجع أحداثاً إلى stream الوكيل:
+
+```ts
+type ToolEvent =
+  | { type: "tool_call"; name: string; args: unknown; callId: string }
+  | { type: "tool_result"; callId: string; ok: boolean; summary: string; artifactId?: string }
+  | { type: "progress"; stage: string; current?: number; total?: number };
+```
+
+## إضافة أداة جديدة
+
+1. أضف schema جديداً إلى `TOOL_SCHEMAS`.
+2. أضف executor داخل `executeTool`.
+3. اجعل الأداة مربوطة دائماً بـ `userId` و`conversationId`.
+4. أرسل `tool_call`, `progress`, و`tool_result` حتى تبقى الواجهة متزامنة.
+5. حدّث هذه الصفحة ومرجع الـ API إذا أصبحت الأداة جزءاً من العقد العام.

@@ -1,33 +1,54 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "API Reference"
+description: "مرجع أولي لنقاط API المستخدمة داخل مبيان"
 ---
 
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  الـ API العام للمطورين ما زال قيد التجهيز. هذا المرجع يوثق المسارات الموجودة فعلياً في `atlas-swarm-core-1/src/routes/api/public`.
 </Note>
 
-## Welcome
+## Base URL
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+في الإنتاج استخدم دومين مبيان:
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+```text
+https://mibyanai.com
+```
+
+في التطوير المحلي استخدم Vite dev server:
+
+```text
+http://localhost:5173
+```
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+معظم المسارات تتطلب Supabase access token:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```http
+Authorization: Bearer <supabase_access_token>
 ```
+
+## أهم المسارات
+
+<CardGroup cols={2}>
+<Card title="Agent run" icon="bolt" href="/developers/api-overview">
+`POST /api/public/agent-run` يشغل حلقة الوكيل ويبث SSE.
+</Card>
+
+<Card title="Classifier" icon="route">
+`POST /api/public/classify` يصنف الطلب ويقترح الوكيل والأسئلة.
+</Card>
+
+<Card title="Skills" icon="puzzle-piece">
+`GET/POST /api/public/skills` يعرض المهارات أو يختار skill مناسباً.
+</Card>
+
+<Card title="AI models" icon="brain">
+`GET /api/public/ai/models` يعرض النماذج المسموحة لتكاملات AI proxy.
+</Card>
+</CardGroup>
+
+## OpenAPI
+
+ملف `api-reference/openapi.json` يحتوي مواصفة أولية لأهم المسارات. ليست كل مسارات التطبيق موثقة فيه بعد، لكنها لم تعد مواصفة Plant Store الافتراضية.

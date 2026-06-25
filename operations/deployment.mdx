@@ -1,0 +1,63 @@
+---
+title: "التشغيل والنشر"
+description: "المتغيرات، Cloudflare، Supabase، ووظائف Edge"
+---
+
+## طبقات النشر
+
+- تطبيق TanStack Start ينشر كـ Cloudflare Worker عبر `wrangler.jsonc`.
+- قاعدة البيانات والمصادقة والتخزين على Supabase.
+- وظائف `generate-deck` و`export-deck-pptx` تنشر كـ Supabase Edge Functions.
+- موقع الوثائق الخارجي ينشر عبر Mintlify من مجلد `docs`.
+
+## متغيرات البيئة
+
+<AccordionGroup>
+<Accordion title="Supabase">
+`VITE_SUPABASE_URL`, `VITE_SUPABASE_PUBLISHABLE_KEY`, `SUPABASE_URL`, `SUPABASE_PUBLISHABLE_KEY`, و`SUPABASE_SERVICE_ROLE_KEY`. المفتاح الأخير سري جداً ولا يستخدم في الواجهة.
+</Accordion>
+
+<Accordion title="AI">
+`OPENROUTER_API_KEY` مطلوب لمعظم مسارات التوليد والوكلاء. `LOVABLE_API_KEY` مستخدم في AI proxy والبريد وبعض مسارات التصدير.
+</Accordion>
+
+<Accordion title="Skills">
+`SKILLS_ADMIN_TOKEN` يحمي مسار استيراد المهارات.
+</Accordion>
+
+<Accordion title="Phone OTP">
+`AUTOMAPI_INSTANCE_ID` و`AUTOMAPI_ACCESS_TOKEN` لتفعيل إرسال OTP عبر SMS.
+</Accordion>
+
+<Accordion title="Payments">
+`VITE_PAYMENTS_CLIENT_TOKEN` مستخدم للعميل حسب بيئة التطوير أو الإنتاج.
+</Accordion>
+</AccordionGroup>
+
+## Supabase
+
+نفّذ migrations من `supabase/migrations`. عند نشر وظائف Edge، اضبط أسرارها بشكل منفصل عن أسرار Cloudflare، خصوصاً:
+
+- `OPENROUTER_API_KEY`
+- `LOVABLE_API_KEY`
+- Supabase URL/keys المطلوبة للوظيفة
+
+## Cloudflare
+
+`wrangler.jsonc` يضبط Worker لتشغيل entry الخاص بـ TanStack Start، مع `nodejs_compat`. تأكد أن متغيرات الخادم السرية موجودة في بيئة Cloudflare وليست في ملفات عامة.
+
+## مراقبة وتشخيص
+
+- PostHog مفعّل في الواجهة عبر `src/lib/posthog.tsx`.
+- سجلات AI يمكن قراءتها من `ai_usage_log`.
+- سجلات البريد في جداول email.
+- أي فشل في `/agent-run` يظهر كحدث `error` في SSE أو كـ HTTP status قبل بدء stream.
+
+## قائمة قبل النشر
+
+- `pnpm lint`
+- `pnpm build`
+- تحقق من Supabase migrations.
+- تحقق من أسرار Edge Functions.
+- جرّب إنشاء مستند، جدول، HTML، وعرض سالم.
+- جرّب تسجيل الدخول وOTP إذا كانت مفاتيحه مفعلة.
